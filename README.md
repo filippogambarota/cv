@@ -1,2 +1,3 @@
-# cv
-My academic CV created with Pagedown
+# My personal Academic CV
+
+This is my personal Academic CV created with the [Pagedown](https://github.com/rstudio/pagedown) package. The idea is to link the `gh-page` created from this CV to my website [filippogambarota.netlify.com](https://filippogambarota.netlify.com/).
