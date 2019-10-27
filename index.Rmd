@@ -1,0 +1,125 @@
+---
+title: "Filippo Gambarota"
+author: Filippo Gambarota
+date: "`r Sys.Date()`"
+bibliography: "bib/mypublication.bib"
+cls: "bib/apa.cls"
+output:
+  pagedown::html_resume:    
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: false
+---
+
+Aside
+================================================================================
+
+
+![Filippo Gambarota](img/photo.jpg){width=60%}
+
+
+Contact Info {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> filippo.gambarota@gmail.com
+- <i class="fa fa-envelope"></i> filippo.gambarota@phd.unipd.it
+- <i class="fa fa-github"></i> [github.com/filippogambarota](https://github.com/filippogambarota)
+- <i class="fa fa-twitter"></i> [fgambarota](https://twitter.com/fgambarota)
+- <i class="fa fa-globe"></i> [filippogambarota.netlify.com](https://filippogambarota.netlify.com/)
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+- Fluent R user
+
+- Knowledge of Matlab, Latex, RMarkdown
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown).
+
+Last updated on `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+Filippo Gambarota {#title}
+--------------------------------------------------------------------------------
+
+### PhD Student at the [University of Padua](www.unipd.it)
+
+I'm a PhD student in Psychological Science at the University of Padua. My research interests regard social and affective neuroscience, in particular the Visual Working Memory in social cognition. Moreover, I'm interested in unconscious cognitive processing of salient stimuli.
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+### University of Padua
+
+B.S. in Psychology
+
+Padua, Italy
+
+2016
+
+Thesis: Psychosocial well-being of adolescents with oncoemathological disease
+
+### University of Padua
+
+M.S. in Clinical Developmental Psychology
+
+Padua, Italy
+
+2018
+
+Thesis: Visual Working Memory representations of infant faces during pregnancy as an adaptive mechanism. An EEG study.
+
+
+Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+### Graduate Research Assistant
+
+Beijing Institute of Genomics, Chinese Academy of Sciences
+
+Beijing, China
+
+2011 - 2014
+
+- Performed computational biology research towards understanding regulation of alternative splicing in human and mouse transcriptome.
+- Found EGFR pathway related mutations, aimed to understand the impacts of cancer mutations on EGFR signaling pathway.
+  
+
+Professional Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+### Data Scientist, intern
+
+SupStat Inc.
+
+Beijing, China
+
+2014
+
+::: concise
+- Taught R language to beginners. 
+- Wrote Shiny app demos.
+- Converted statistical tutorials from SPSS to R language.
+:::
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+### Introduction to R Language for Beginners.
+
+Instructor of R and Data Mining Training Courses at SupStat Inc.
+
+Beijing, China
+
+2014
+
+Selected Publications and Posters {data-icon=file}
+--------------------------------------------------------------------------------
