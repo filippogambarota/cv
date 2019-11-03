@@ -2,8 +2,6 @@
 title: "Filippo Gambarota"
 author: Filippo Gambarota
 date: "`r Sys.Date()`"
-bibliography: "bib/mypublication.bib"
-cls: "bib/apa.cls"
 output:
   pagedown::html_resume:    
     # set it to true for a self-contained HTML page but it'll take longer to render
@@ -26,12 +24,16 @@ Contact Info {#contact}
 - <i class="fa fa-twitter"></i> [fgambarota](https://twitter.com/fgambarota)
 - <i class="fa fa-globe"></i> [filippogambarota.netlify.com](https://filippogambarota.netlify.com/)
 
-Skills {#skills}
+Software Skills {#skills}
 --------------------------------------------------------------------------------
 
-- Fluent R user
+- **Statistics**: R Software - Tidyverse
 
-- Knowledge of Matlab, Latex, RMarkdown
+- **Others**: Knowledge of Matlab, Latex, GIT
+
+- **Vector Illustration**: Gimp, Inkscape
+
+- **Experiments**: EPrime
 
 
 Disclaimer {#disclaimer}
@@ -42,24 +44,22 @@ This resume was made with the R package [**pagedown**](https://github.com/rstudi
 Last updated on `r Sys.Date()`.
 
 
-
 Main
 ================================================================================
 
 Filippo Gambarota {#title}
 --------------------------------------------------------------------------------
 
-### PhD Student at the [University of Padua](www.unipd.it)
+### PhD Student - [University of Padova](www.unipd.it)
 
-I'm a PhD student in Psychological Science at the University of Padua. My research interests regard social and affective neuroscience, in particular the Visual Working Memory in social cognition. Moreover, I'm interested in unconscious cognitive processing of salient stimuli.
-
+I'm a PhD student in Psychological Science at the University of Padua, supervised by [Prof. Paola Sessa](https://scholar.google.com/citations?hl=en&user=qAZTiyUAAAAJ) from the [CoLab Research Group](http://colab.psy.unipd.it/). My research interests regard social and affective neuroscience. In particular, I'm studying the role of visual working memory in social and affective cognition. I'm also interested in unconscious information processing, especially for salient stimuli. In parallel, I'm interested in the topic of trasparent and reproducible research.
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
 
 ### University of Padua
 
-B.S. in Psychology
+B.S. in Psychology - 110 cum laude
 
 Padua, Italy
 
@@ -69,7 +69,7 @@ Thesis: Psychosocial well-being of adolescents with oncoemathological disease
 
 ### University of Padua
 
-M.S. in Clinical Developmental Psychology
+M.S. in Clinical Developmental Psychology - 110 cum laude
 
 Padua, Italy
 
@@ -78,48 +78,125 @@ Padua, Italy
 Thesis: Visual Working Memory representations of infant faces during pregnancy as an adaptive mechanism. An EEG study.
 
 
-Research Experience {data-icon=laptop}
+Research and Internship Experience {data-icon=laptop}
 --------------------------------------------------------------------------------
 
-### Graduate Research Assistant
+### Pre-Graduate Intership
 
-Beijing Institute of Genomics, Chinese Academy of Sciences
+Hospital of Padova - Pediatrics Oncology
 
-Beijing, China
+Padova, Italy
 
-2011 - 2014
+2016
 
-- Performed computational biology research towards understanding regulation of alternative splicing in human and mouse transcriptome.
-- Found EGFR pathway related mutations, aimed to understand the impacts of cancer mutations on EGFR signaling pathway.
-  
+- Educational activities with in-patients children and their families
+- Conducting a study about the psychosocial well-being of in-patients adolescents
+- Discussing about clinical cases in regular supervisions
 
-Professional Experience {data-icon=suitcase}
---------------------------------------------------------------------------------
+### Pre-Graduate Intership
 
-### Data Scientist, intern
+Department of Developmental Psychology and Socialization - University of Padova
 
-SupStat Inc.
+Padova, Italy
 
-Beijing, China
+2017 - 2018
 
-2014
+- Training in EEG Laboratory
+- Following a research project about social cognition during pregnancy
 
-::: concise
-- Taught R language to beginners. 
-- Wrote Shiny app demos.
-- Converted statistical tutorials from SPSS to R language.
-:::
+### Post-Graduate Intership
+
+Department of Developmental Psychology and Socialization - University of Padova
+
+Padova, Italy
+
+2018 - 2019
+
+- Following a research project about visual consciousness and sensorimotor simulation
+- Following a research project about social cognition during pregnancy
+- Supervising internship students in EEG laboratory
+
+</br>
 
 Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
-### Introduction to R Language for Beginners.
+### EEG laboratory training
 
-Instructor of R and Data Mining Training Courses at SupStat Inc.
+University of Padua
 
-Beijing, China
+Padova, Italy
 
-2014
+2017 - 2019
 
-Selected Publications and Posters {data-icon=file}
+- Supervising internship students inside the EEG laboratory
+
+
+Educational Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
+
+### Bayesian Statistical Analyses for the Human, Social and Cognitive Sciences
+
+University of Verona
+
+Verona, Italy
+
+2019
+
+Publications {data-icon=file}
+
+### Psicostat
+
+University of Padua
+
+Padua, Italy
+
+2019 - Present
+
+- Attenting to an academic multidisciplinary group called [Psicostat](http://ip146179.psy.unipd.it/psicostat/web/index.html?fbclid=IwAR1F8-gDhqlNPFTFJZLgSeMwSQoQRzEwijU5mAPdSGjEH-bNvFjgv6O82Rg) about modern statistical methods and application in psychological research
+
+Publications {data-icon=file}
+--------------------------------------------------------------------------------
+
+### Visual Working Memory for Faces and Facial Expressions as a Useful “Tool” for Understanding Social and Affective Cognition
+
+Frontiers in Psychology [doi: 10.3389/fpsyg.2019.02392](https://doi.org/10.3389/fpsyg.2019.02392)
+
+N/A
+
+2019
+
+**Gambarota Filippo** and Sessa Paola
+
+Posters {data-icon=file}
+--------------------------------------------------------------------------------
+
+### Sensorimotor modulation of visual consciousness of others emotions
+
+N/A
+
+PhD Open Day 2019. Padua
+
+2019
+
+Quettier Thomas, **Gambarota Filippo** and Sessa Paola
+
+Other Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+### Speaker Coordinator
+
+[TEDx Padova](http://tedxpadova.org/)
+
+Padova, Italy
+
+2018 - Present
+
+- Organizing the TEDx event
+- Following and supporting the speakers for the talk
+
+### Volunteering
+
+Hospital of Padova - Pediatrics Oncology
+
+2016 - Present
