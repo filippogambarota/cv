@@ -27,12 +27,13 @@ Contact Info {#contact}
 Software Skills {#skills}
 --------------------------------------------------------------------------------
 
-- **Statistics**: R - Tidyverse
+- **Statistics**: R
 
-- **Others**: Knowledge of Matlab, Latex, GIT
+- **Others**: Matlab, Latex, GIT
 
 - **Experiments**: EPrime, Psychtoolbox
 
+- **EEG Analysis**: Brain Vision Analyzer (basic knowledge)
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
@@ -50,20 +51,10 @@ Filippo Gambarota {#title}
 
 ### PhD Student - [University of Padova](www.unipd.it)
 
-I'm a PhD student in Psychological Science at the University of Padua, supervised by [Prof. Paola Sessa](https://scholar.google.com/citations?hl=en&user=qAZTiyUAAAAJ) from the [CoLab Research Group](http://colab.psy.unipd.it/). My research interests regard social and affective neuroscience and visual consciousness. I'm also interested in unconscious information processing and visual working memory. In parallel, I'm interested in the topic of trasparent and reproducible research in particular using reproducibile tools for my academic life.
+I'm a PhD student in Psychological Sciences at the University of Padua, supervised by [Prof. Paola Sessa](https://scholar.google.com/citations?hl=en&user=qAZTiyUAAAAJ) from the [CoLab Research Group](http://colab.psy.unipd.it/). My research interests regard social and affective neuroscience and visual consciousness. I'm also interested in unconscious information processing and visual working memory. In parallel, I'm interested in the topic of trasparent and reproducible research in particular using reproducibile tools for my academic life.
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
-
-### University of Padua
-
-B.S. in Psychology - 110 cum laude
-
-Padua, Italy
-
-2016
-
-Thesis: Psychosocial well-being of adolescents with oncoemathological disease
 
 ### University of Padua
 
@@ -75,8 +66,17 @@ Padua, Italy
 
 Thesis: Visual Working Memory representations of infant faces during pregnancy as an adaptive mechanism. An EEG study.
 
+### University of Padua
 
-Research and Internship Experience {data-icon=laptop}
+B.S. in Psychology - 110 cum laude
+
+Padua, Italy
+
+2016
+
+Thesis: Psychosocial well-being of adolescents with oncoemathological disease
+
+Academic Experience {data-icon=laptop}
 --------------------------------------------------------------------------------
 
 ### Pre-Graduate Intership
@@ -151,7 +151,7 @@ Padua, Italy
 
 2019 - Present
 
-- Attenting to an academic multidisciplinary group called [Psicostat](http://ip146179.psy.unipd.it/psicostat/web/index.html?fbclid=IwAR1F8-gDhqlNPFTFJZLgSeMwSQoQRzEwijU5mAPdSGjEH-bNvFjgv6O82Rg) about modern statistical methods and application in psychological research
+- I am part of the [Psicostat](http://ip146179.psy.unipd.it/psicostat/web/index.html?fbclid=IwAR1F8-gDhqlNPFTFJZLgSeMwSQoQRzEwijU5mAPdSGjEH-bNvFjgv6O82Rg) research group. The aim is to apply modern statistical approaches to psychological sciences and neuroscience.
 
 Publications {data-icon=file}
 --------------------------------------------------------------------------------
@@ -206,5 +206,7 @@ Padova, Italy
 ### Volunteering
 
 Hospital of Padova - Pediatrics Oncology
+
+Padova, Italy
 
 2016 - Present
