@@ -42,6 +42,7 @@ This resume was made with the R package [**pagedown**](https://github.com/rstudi
 
 Last updated on `r Sys.Date()`.
 
+
 Main
 ================================================================================
 
@@ -114,8 +115,6 @@ Padova, Italy
 - Research project about visual consciousness and sensorimotor simulation
 - Research project about social cognition during pregnancy
 - Supervision of internship students in EEG laboratory
-
-</br>
 
 Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------

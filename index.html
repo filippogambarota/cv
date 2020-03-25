@@ -7,18 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="author" content="Filippo Gambarota" />
-    <meta name="date" content="2020-02-25" />
+    <meta name="date" content="2020-03-25" />
     <title>Filippo Gambarota</title>
 
     
-        <script src="index_files/jquery-1.11.3/jquery.min.js"></script>
-        <script src="index_files/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
         <link href="index_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-        <link href="index_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-        <link href="index_files/paged-0.7/css/resume.css" rel="stylesheet" />
-        <script src="index_files/paged-0.7/js/config.js"></script>
-        <script src="index_files/paged-0.7/js/paged.js"></script>
-        <script src="index_files/paged-0.7/js/hooks.js"></script>
+    <link href="index_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <link href="index_files/paged-0.9/css/resume.css" rel="stylesheet" />
+    <script src="index_files/paged-0.9/js/config.js"></script>
+    <script src="index_files/paged-0.9/js/paged.js"></script>
+    <script src="index_files/paged-0.9/js/hooks.js"></script>
     
     
   </head>
@@ -26,7 +24,7 @@
 
 <div id="aside" class="section level1">
 <h1>Aside</h1>
-<p><img src="img/photo.jpg" style="width:60.0%" alt="Filippo Gambarota" /></p>
+<p><img src="img/photo.jpg" alt="Filippo Gambarota" style="width:60.0%" /></p>
 <div id="contact" class="section level2">
 <h2>Contact Info</h2>
 <ul>
@@ -41,15 +39,15 @@
 <h2>Software Skills</h2>
 <ul>
 <li><p><strong>Statistics</strong>: R</p></li>
-<li><p><strong>Others</strong>: Matlab, Latex, GIT</p></li>
+<li><p><strong>Others</strong>: Matlab, Latex, GIT, HTML, CSS</p></li>
 <li><p><strong>Experiments</strong>: EPrime, Psychtoolbox</p></li>
-<li><p><strong>EEG Analysis</strong>: Brain Vision Analyzer (basic knowledge)</p></li>
+<li><p><strong>EEG Analysis</strong>: Brain Vision Analyzer</p></li>
 </ul>
 </div>
 <div id="disclaimer" class="section level2">
 <h2>Disclaimer</h2>
 <p>This resume was made with the R package <a href="https://github.com/rstudio/pagedown"><strong>pagedown</strong></a>.</p>
-<p>Last updated on 2020-02-25.</p>
+<p>Last updated on 2020-03-25.</p>
 </div>
 </div>
 <div id="main" class="section level1">
@@ -58,7 +56,9 @@
 <h2>Filippo Gambarota</h2>
 <div id="phd-student---university-of-padova" class="section level3">
 <h3>PhD Student - <a href="www.unipd.it">University of Padova</a></h3>
-<p>I’m a PhD student in Psychological Sciences at the University of Padua, supervised by <a href="https://scholar.google.com/citations?hl=en&amp;user=qAZTiyUAAAAJ">Prof. Paola Sessa</a> from the <a href="http://colab.psy.unipd.it/">CoLab Research Group</a>. My research interests regard social and affective neuroscience and visual consciousness. I’m also interested in unconscious information processing and visual working memory. In parallel, I’m interested in the topic of trasparent and reproducible research in particular using reproducibile tools for my academic life.</p>
+<p>I’m a PhD student in Psychological Sciences at the University of Padua, supervised by <a href="https://scholar.google.com/citations?hl=en&amp;user=qAZTiyUAAAAJ">Prof. Paola Sessa</a> from the <a href="http://colab.psy.unipd.it/">CoLab Research Group</a>. My research
+interests regard social and affective neuroscience and visual consciousness. I am also interested in unconscious information processing and visual working
+memory. In parallel, I’m interested in the topic of trasparent and reproducible research in particular using reproducibile tools for my academic life.</p>
 </div>
 </div>
 <div id="education" class="section level2" data-icon="graduation-cap" data-concise="true">
@@ -87,7 +87,7 @@
 <p>2016</p>
 <ul>
 <li>Educational activities with in-patients children and their families</li>
-<li>Conducting a study about the psychosocial well-being of in-patients adolescents</li>
+<li>Research about the psychosocial well-being of in-patients adolescents</li>
 <li>Discussing about clinical cases in regular supervisions</li>
 </ul>
 </div>
@@ -98,7 +98,7 @@
 <p>2017 - 2018</p>
 <ul>
 <li>Training in EEG Laboratory</li>
-<li>Following a research project about social cognition during pregnancy</li>
+<li>Research project about social cognition during pregnancy</li>
 </ul>
 </div>
 <div id="post-graduate-intership" class="section level3">
@@ -107,11 +107,10 @@
 <p>Padova, Italy</p>
 <p>2018 - 2019</p>
 <ul>
-<li>Following a research project about visual consciousness and sensorimotor simulation</li>
-<li>Following a research project about social cognition during pregnancy</li>
-<li>Supervising internship students in EEG laboratory</li>
+<li>Research project about visual consciousness and sensorimotor simulation</li>
+<li>Research project about social cognition during pregnancy</li>
+<li>Supervision of internship students in EEG laboratory</li>
 </ul>
-<p></br></p>
 </div>
 </div>
 <div id="teaching-experience" class="section level2" data-icon="chalkboard-teacher">
@@ -122,7 +121,7 @@
 <p>Padova, Italy</p>
 <p>2017 - 2019</p>
 <ul>
-<li>Supervising internship students inside the EEG laboratory</li>
+<li>Supervision of internship students inside the EEG laboratory</li>
 </ul>
 </div>
 </div>
@@ -220,8 +219,11 @@
     if (i === 0 && el.id === 'title') continue;
     el.className += ' main-block';
     if (el.dataset['concise']) el.className += ' concise';
-    s = el.dataset['icon'] || 'bookmark';
-    el.firstElementChild.insertBefore(create_el('i', 'fa fa-' + s), el.firstElementChild.firstChild);
+    // if there is no icon, add an icon:
+    if (el.firstElementChild.firstChild && el.firstElementChild.firstChild.nodeName !== 'I') {
+      s = el.dataset['icon'] || 'bookmark';
+      el.firstElementChild.insertBefore(create_el('i', 'fa fa-' + s), el.firstElementChild.firstChild);
+    }
   }
 
   // tweak class names of blocks in sections
