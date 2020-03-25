@@ -29,11 +29,11 @@ Software Skills {#skills}
 
 - **Statistics**: R
 
-- **Others**: Matlab, Latex, GIT
+- **Others**: Matlab, Latex, GIT, HTML, CSS
 
 - **Experiments**: EPrime, Psychtoolbox
 
-- **EEG Analysis**: Brain Vision Analyzer (basic knowledge)
+- **EEG Analysis**: Brain Vision Analyzer
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
@@ -41,7 +41,6 @@ Disclaimer {#disclaimer}
 This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown).
 
 Last updated on `r Sys.Date()`.
-
 
 Main
 ================================================================================
@@ -51,7 +50,9 @@ Filippo Gambarota {#title}
 
 ### PhD Student - [University of Padova](www.unipd.it)
 
-I'm a PhD student in Psychological Sciences at the University of Padua, supervised by [Prof. Paola Sessa](https://scholar.google.com/citations?hl=en&user=qAZTiyUAAAAJ) from the [CoLab Research Group](http://colab.psy.unipd.it/). My research interests regard social and affective neuroscience and visual consciousness. I'm also interested in unconscious information processing and visual working memory. In parallel, I'm interested in the topic of trasparent and reproducible research in particular using reproducibile tools for my academic life.
+I'm a PhD student in Psychological Sciences at the University of Padua, supervised by [Prof. Paola Sessa](https://scholar.google.com/citations?hl=en&user=qAZTiyUAAAAJ) from the [CoLab Research Group](http://colab.psy.unipd.it/). My research
+interests regard social and affective neuroscience and visual consciousness. I am also interested in unconscious information processing and visual working
+memory. In parallel, I'm interested in the topic of trasparent and reproducible research in particular using reproducibile tools for my academic life.
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
@@ -88,7 +89,7 @@ Padova, Italy
 2016
 
 - Educational activities with in-patients children and their families
-- Conducting a study about the psychosocial well-being of in-patients adolescents
+- Research about the psychosocial well-being of in-patients adolescents
 - Discussing about clinical cases in regular supervisions
 
 ### Pre-Graduate Intership
@@ -100,7 +101,7 @@ Padova, Italy
 2017 - 2018
 
 - Training in EEG Laboratory
-- Following a research project about social cognition during pregnancy
+- Research project about social cognition during pregnancy
 
 ### Post-Graduate Intership
 
@@ -110,9 +111,9 @@ Padova, Italy
 
 2018 - 2019
 
-- Following a research project about visual consciousness and sensorimotor simulation
-- Following a research project about social cognition during pregnancy
-- Supervising internship students in EEG laboratory
+- Research project about visual consciousness and sensorimotor simulation
+- Research project about social cognition during pregnancy
+- Supervision of internship students in EEG laboratory
 
 </br>
 
@@ -127,7 +128,7 @@ Padova, Italy
 
 2017 - 2019
 
-- Supervising internship students inside the EEG laboratory
+- Supervision of internship students inside the EEG laboratory
 
 
 Educational Experience {data-icon=chalkboard-teacher}
