@@ -51,101 +51,102 @@ Filippo Gambarota {#title}
 
 ### PhD Student - [University of Padova](www.unipd.it)
 
-I'm a PhD student in Psychological Sciences at the University of Padua, supervised by [Prof. Paola Sessa](https://scholar.google.com/citations?hl=en&user=qAZTiyUAAAAJ) from the [CoLab Research Group](http://colab.psy.unipd.it/). My research
-interests regard social and affective neuroscience and visual consciousness. I am also interested in unconscious information processing and visual working
-memory. In parallel, I'm interested in the topic of trasparent and reproducible research in particular using reproducibile tools for my academic life.
+Sono uno studente del 35°ciclo di dottorato in Psychological Science, supervisionato dalla Prof.ssa [Paola Sessa](https://scholar.google.com/citations?hl=en&user=qAZTiyUAAAAJ). I miei interessi di ricerca riguardano le neuroscienze affettive e sociale e la coscienza visiva. Sono anche interessato ad elaborazione di informazioni non consapevoli e visual working memory. Parallelamente mi interesso anche di open science e software per rendere la ricerca trasparente e riproducibile.
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
 
-### University of Padua
+### Università di Padova
 
-M.S. in Clinical Developmental Psychology - 110 cum laude
+Laurea Magistrale in Psicologia Clinica dello Sviluppo - 110 e lode
 
-Padua, Italy
+N/A
 
 2018
 
-Thesis: Visual Working Memory representations of infant faces during pregnancy as an adaptive mechanism. An EEG study.
+Tesi: Visual Working Memory representations of infant faces during pregnancy as an adaptive mechanism. An EEG study.
+
+Supervisor: Prof.ssa Paola Sessa
 
 ### University of Padua
 
-B.S. in Psychology - 110 cum laude
+Laurea Triennale in Scienze Psicologiche della Personalità e Relazioni Interpersonali - 110 e lode
 
-Padua, Italy
+N/A
 
 2016
 
-Thesis: Psychosocial well-being of adolescents with oncoemathological disease
+Tesi: Psychosocial well-being of adolescents with oncoemathological disease
 
-Academic Experience {data-icon=laptop}
+Supervisor: Prof.ssa Ughetta Moscardino
+
+Esperienze Accademiche {data-icon=laptop}
 --------------------------------------------------------------------------------
 
-### Pre-Graduate Intership
+### Tirocinio pre-lauream
 
-Hospital of Padova - Pediatrics Oncology
+Ospedale di Padova - Oncoematologia Pediatrica
 
-Padova, Italy
+Padova, Italia
 
 2016
 
-- Educational activities with in-patients children and their families
-- Research about the psychosocial well-being of in-patients adolescents
-- Discussing about clinical cases in regular supervisions
+- Attività educative con i bambini ospedalizzati e le loro famiglie
+- Ricerca riguardo il benessere psicosociale in adolescenza
+- Discussione di casi clinici con supervisioni settimanali
 
-### Pre-Graduate Intership
+### Tirocinio pre-lauream
 
-Department of Developmental Psychology and Socialization - University of Padova
+Dipartimento di Psicologia dello Sviluppo e della Socializzazione - Università di Padova
 
-Padova, Italy
+Padova, Italia
 
 2017 - 2018
 
-- Training in EEG Laboratory
-- Research project about social cognition during pregnancy
+- Training in laboratorio EEG
+- Progetto di ricerca riguardo la cognizione sociale in gravidanza
 
-### Post-Graduate Intership
+### Tirocinio post-lauream
 
-Department of Developmental Psychology and Socialization - University of Padova
+Dipartimento di Psicologia dello Sviluppo e della Socializzazione - Università di Padova
 
-Padova, Italy
+Padova, Italia
 
 2018 - 2019
 
-- Research project about visual consciousness and sensorimotor simulation
-- Research project about social cognition during pregnancy
-- Supervision of internship students in EEG laboratory
+- Progetto di ricerca riguardo la consapevolezza visiva e la simulazione sensorimotoria
+- Supervisione per tirocinanti in laboratorio EEG
 
-</br>
-
-Teaching Experience {data-icon=chalkboard-teacher}
+Esperienze Didattiche {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
-### EEG laboratory training
+### Training laboratorio EEG
 
-University of Padua
+Università di Padova
 
-Padova, Italy
+Padova, Italia
 
 2017 - 2019
 
-- Supervision of internship students inside the EEG laboratory
+- Ho seguito la formazione dei tirocinanti in laboratorio EEG
 
-### Master Degree Lecture
+### Lezione
 
-University of Padua - Applied Cognitive Psychology course
+Università di Padova - corso di Laurea Magistrale in Psicologia Cognitiva Applicata
+
+N/A
 
 2020
 
-- Two hours lecture about Neural Correlate of Visual Consciousness during the course: Mechanism of Consciousness and Error Monitoring held by Professor Dell'Acqua.
+- Ho tenuto 2 ore di lezione dal titolo "Neural Correlate of Consciousness" presso il corso "Mechanism of Consciousness and Error Monitoring" - Prof. Roberto Dell'Acqua.
 
 
-Educational Experience {data-icon=chalkboard-teacher}
+Esperienze Formative {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
 ### Bayesian Statistical Analyses for the Human, Social and Cognitive Sciences
 
-University of Verona
+Università di Verona
 
 Verona, Italy
 
@@ -153,15 +154,15 @@ Verona, Italy
 
 ### Psicostat
 
-University of Padua
+Università of Padova
 
 Padua, Italy
 
 2019 - Present
 
-- I am part of the [Psicostat](http://ip146179.psy.unipd.it/psicostat/web/index.html?fbclid=IwAR1F8-gDhqlNPFTFJZLgSeMwSQoQRzEwijU5mAPdSGjEH-bNvFjgv6O82Rg) research group. The aim is to apply modern statistical approaches to psychological sciences and neuroscience.
+- Sono parte di [Psicostat](http://ip146179.psy.unipd.it/psicostat/web/index.html?fbclid=IwAR1F8-gDhqlNPFTFJZLgSeMwSQoQRzEwijU5mAPdSGjEH-bNvFjgv6O82Rg), un gruppo di ricerca riguardo l'applicazione di moderne tecniche statistiche alla ricerca psicologica.
 
-Publications {data-icon=file}
+Pubblicazioni {data-icon=file}
 --------------------------------------------------------------------------------
 
 ### Visual Working Memory for Faces and Facial Expressions as a Useful “Tool” for Understanding Social and Affective Cognition
@@ -197,7 +198,7 @@ N/A
 
 **Gambarota Filippo**, Pastore Massimiliano, Roy Luria, Pier Francesco Ferrari and Sessa Paola
 
-Other Experience {data-icon=suitcase}
+Altre Esperienze {data-icon=suitcase}
 --------------------------------------------------------------------------------
 
 ### Speaker Coordinator
@@ -206,18 +207,18 @@ Other Experience {data-icon=suitcase}
 
 Padova, Italy
 
-2018 - Present
+2018 - in corso
 
-- Organizing the TEDx event
-- Following and supporting the speakers for the talk
+- Organizzazione dell'evento TEDx
+- Gestione degli speaker e supporto alla preparazione del discorso
 
-### Volunteering
+### Volontariato
 
-Hospital of Padova - Pediatrics Oncology
+Ospedale di Padova - Oncoematologia Pediatrica
 
-Padova, Italy
+Padova, Italia
 
-2016 - Present
+2016 - in corso
 
 ```{css, echo=FALSE}
 #contact ul{
