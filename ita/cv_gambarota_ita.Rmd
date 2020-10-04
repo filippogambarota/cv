@@ -24,7 +24,7 @@ Contact Info {#contact}
 - <i class="fa fa-twitter"></i> [fgambarota](https://twitter.com/fgambarota)
 - <i class="fa fa-globe"></i> [filippogambarota.netlify.com](https://filippogambarota.netlify.com/)
 
-Software Skills {#skills}
+Software {#skills}
 --------------------------------------------------------------------------------
 
 - **Statistica**: R
@@ -39,7 +39,7 @@ Software Skills {#skills}
 
 - **Siti Web**: HTML, CSS, Hugo
 
-Competenze Linguistiche {#language}
+Lingue {#language}
 --------------------------------------------------------------------------------
 
 - **Italiano**: lingua madre
