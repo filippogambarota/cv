@@ -42,8 +42,6 @@ Software {#skills}
 Lingue {#language}
 --------------------------------------------------------------------------------
 
-- **Italiano**: lingua madre
-
 - **Inglese**: ottima competenza scritta e orale
 
 Disclaimer {#disclaimer}
@@ -176,7 +174,7 @@ N/A
 
 2020
 
-- [Summer School](https://vasishth.github.io/smlp2020/) in statistica bayesiana applicata per la psicologia sperimentale
+- [Summer School](https://vasishth.github.io/smlp2020/) in statistica bayesiana per la psicologia sperimentale
 
 
 ### Bayesian Statistical Analyses for the Human, Social and Cognitive Sciences
@@ -269,15 +267,14 @@ Padova, Italia
   padding-left: 0in;
   padding-right: 0in;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 #language ul{
-  margin-top: 0in;
   padding-left: 0in;
   padding-right: 0in;
   font-weight: 300;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 #disclaimer ul{
