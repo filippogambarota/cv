@@ -40,7 +40,7 @@ Language Skills {#language}
 
 - **English**: proficient
 
-[PDF version]("https://filippogambarota.github.io/cv/eng/cv_gambarota_eng.pdf") - [Italian Version]("https://filippogambarota.github.io/cv/ita/cv_gambarota_ita.html")
+[PDF version](https://filippogambarota.github.io/cv/eng/cv_gambarota_eng.pdf) - [Italian Version](https://filippogambarota.github.io/cv/ita/cv_gambarota_ita.html)
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
