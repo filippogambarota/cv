@@ -29,11 +29,15 @@ Software Skills {#skills}
 
 - **Statistics**: R
 
-- **Others**: Matlab, Latex, GIT, HTML, CSS
+- **Others**: Matlab, Latex, GIT
 
-- **Experiments**: EPrime, Psychtoolbox
+- **Experiments**: EPrime, Psychtoolbox, Psychopy
 
 - **EEG Analysis**: Brain Vision Analyzer
+
+- **Sistemi Operativi**: Linux, Windows
+
+- **Websites**: HTML, CSS, Hugo
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
@@ -41,7 +45,6 @@ Disclaimer {#disclaimer}
 This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown).
 
 Last updated on `r Sys.Date()`.
-
 
 Main
 ================================================================================
@@ -55,6 +58,18 @@ Sono uno studente del 35°ciclo di dottorato in Psychological Science, supervisi
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
+
+### Università di Padova
+
+Corso di dottorato in Psychologycal Sciences - Dipartimento di Psicologia dello Sviluppo e della Socializzazione
+
+N/A
+
+2019 - In corso
+
+Supervisor: Prof. Paola Sessa
+
+Co-supervisor: Prof. Massimiliano Pastore
 
 ### Università di Padova
 
