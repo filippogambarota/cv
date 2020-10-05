@@ -37,6 +37,10 @@ Software {#skills}
 
 - **Sistemi Operativi**: Linux, Windows
 
+- **Pacchetto Office**: Word, Excel, PowerPoint
+
+- Gestione dati tramite piattaforme cloud
+
 - **Siti Web**: HTML, CSS, Hugo
 
 Lingue {#language}
@@ -44,14 +48,14 @@ Lingue {#language}
 
 - **Inglese**: ottima competenza scritta e orale
 
-Disclaimer {#disclaimer}
+<!---   Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
 Resume made with [**pagedown**](https://github.com/rstudio/pagedown) 
 
 Data: `r Sys.Date()`
 
-![Filippo Gambarota](../img/signature.png){width=80%}
+![Filippo Gambarota](../img/signature.png){width=80%} --->
 
 Main
 ================================================================================
