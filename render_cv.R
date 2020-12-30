@@ -15,12 +15,12 @@
 # )
 # cache_data <- TRUE
 
+which_cv <- commandArgs(trailingOnly = TRUE)
+
+#which_cv <- readline(prompt="Compile CV? (1 = ITA, 2 = ENG, 3 = both):  ")
 
 
-which_cv <- readline(prompt="Compile CV? (1 = ITA, 2 = ENG, 3 = both):  ")
-
-
-if (which_cv == 1){
+if (which_cv == 1| which_cv == tolower("ita")){
     
     ## Ita Version
     
@@ -41,7 +41,7 @@ if (which_cv == 1){
     # Convert to PDF using Pagedown
     pagedown::chrome_print(input = tmp_html_cv_loc,
                            output = "ita/cv_gambarota_ita.pdf")
-} else if (which_cv == 2){
+} else if (which_cv == 2|which_cv == tolower("eng")){
     
     ## Eng Version
     
@@ -61,7 +61,7 @@ if (which_cv == 1){
     # Convert to PDF using Pagedown
     pagedown::chrome_print(input = tmp_html_cv_loc,
                            output = "eng/cv_gambarota_eng.pdf")
-} else if (which_cv == 3){
+} else if (which_cv == 3|which_cv == tolower("both")){
     
     ## Ita Version
     
