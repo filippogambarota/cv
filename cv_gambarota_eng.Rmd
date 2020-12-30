@@ -6,13 +6,15 @@ output:
   pagedown::html_resume:    
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
+params:
+  pdf_mode: FALSE
+  html_mode: TRUE
 ---
 
 Aside
 ================================================================================
 
 ![Filippo Gambarota](img/photo.jpg){width=60%}
-
 
 Contact Info {#contact}
 --------------------------------------------------------------------------------
@@ -40,7 +42,13 @@ Language Skills {#language}
 
 - **English**: proficient
 
-[PDF version](eng/cv_gambarota_eng.pdf) - [Italian Version](ita/cv_gambarota_ita.html)
+```{r, eval=params$html_mode, results='asis', echo=FALSE}
+glue::as_glue("[PDF version](eng/cv_gambarota_eng.pdf)")
+```
+
+```{r, eval=params$pdf_mode, results='asis', echo=FALSE}
+glue::as_glue("[HTML version](https://filippogambarota.github.io/cv/)")
+```
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
@@ -49,8 +57,9 @@ Resume made with [**pagedown**](https://github.com/rstudio/pagedown)
 
 Updated on `r Sys.Date()`
 
-![Filippo Gambarota](img/signature.png){width=80%}
-
+```{r, eval=params$pdf_mode, results='asis', echo=FALSE}
+glue::as_glue("![Filippo Gambarota](img/signature.png){width=80%})")
+```
 
 Main
 ================================================================================

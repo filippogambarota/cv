@@ -6,6 +6,9 @@ output:
   pagedown::html_resume:    
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
+params:
+  pdf_mode: FALSE
+  html_mode: TRUE
 ---
 
 Aside
@@ -35,27 +38,31 @@ Software {#skills}
 
 - **Analisi EEG**: Brain Vision Analyzer
 
-- **Sistemi Operativi**: Linux, Windows
-
-- **Pacchetto Office**: Word, Excel, PowerPoint
-
-- Gestione dati tramite piattaforme cloud
-
 - **Siti Web**: HTML, CSS, Hugo
+
+```{r, eval=params$html_mode, results='asis', echo=FALSE}
+glue::as_glue("[PDF version](ita/cv_gambarota_ita.pdf)")
+```
+
+```{r, eval=params$pdf_mode, results='asis', echo=FALSE}
+glue::as_glue("[HTML version](https://filippogambarota.github.io/cv/)")
+```
 
 Lingue {#language}
 --------------------------------------------------------------------------------
 
 - **Inglese**: ottima competenza scritta e orale
 
-<!---   Disclaimer {#disclaimer}
+Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
 Resume made with [**pagedown**](https://github.com/rstudio/pagedown) 
 
-Data: `r Sys.Date()`
+Updated on `r Sys.Date()`
 
-![Filippo Gambarota](../img/signature.png){width=80%} --->
+```{r, eval=params$pdf_mode, results='asis', echo=FALSE}
+glue::as_glue("![Filippo Gambarota](../img/signature.png){width=80%})")
+```
 
 Main
 ================================================================================
