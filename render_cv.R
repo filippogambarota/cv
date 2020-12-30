@@ -26,13 +26,15 @@ if (which_cv == 1){
     
     # Knit the HTML version
     rmarkdown::render("ita/cv_gambarota_ita.Rmd",
-                      params = list(pdf_mode = FALSE),
+                      params = list(pdf_mode = FALSE,
+                                    html_mode = TRUE),
                       output_file = "cv_gambarota_ita.html",
                       quiet = T)
     # Knit the PDF version to temporary html location
     tmp_html_cv_loc <- fs::file_temp(ext = ".html")
     rmarkdown::render("ita/cv_gambarota_ita.Rmd",
-                      params = list(pdf_mode = TRUE),
+                      params = list(pdf_mode = TRUE,
+                                    html_mode = FALSE),
                       output_file = tmp_html_cv_loc,
                       quiet = T)
     
@@ -45,13 +47,15 @@ if (which_cv == 1){
     
     # Knit the HTML version
     rmarkdown::render("cv_gambarota_eng.Rmd",
-                      params = list(pdf_mode = FALSE),
+                      params = list(pdf_mode = FALSE,
+                                    html_mode = TRUE),
                       output_file = "index.html",
                       quiet = T)
     # Knit the PDF version to temporary html location
     tmp_html_cv_loc <- fs::file_temp(ext = ".html")
     rmarkdown::render("cv_gambarota_eng.Rmd",
-                      params = list(pdf_mode = TRUE),
+                      params = list(pdf_mode = TRUE,
+                                    html_mode = FALSE),
                       output_file = tmp_html_cv_loc,
                       quiet = T)
     # Convert to PDF using Pagedown
@@ -59,20 +63,22 @@ if (which_cv == 1){
                            output = "eng/cv_gambarota_eng.pdf")
 } else if (which_cv == 3){
     
-    ## Ita version
+    ## Ita Version
     
     # Knit the HTML version
     rmarkdown::render("ita/cv_gambarota_ita.Rmd",
-                      params = list(pdf_mode = FALSE),
+                      params = list(pdf_mode = FALSE,
+                                    html_mode = TRUE),
                       output_file = "cv_gambarota_ita.html",
                       quiet = T)
     # Knit the PDF version to temporary html location
     tmp_html_cv_loc <- fs::file_temp(ext = ".html")
-    
     rmarkdown::render("ita/cv_gambarota_ita.Rmd",
-                      params = list(pdf_mode = TRUE),
+                      params = list(pdf_mode = TRUE,
+                                    html_mode = FALSE),
                       output_file = tmp_html_cv_loc,
                       quiet = T)
+    
     # Convert to PDF using Pagedown
     pagedown::chrome_print(input = tmp_html_cv_loc,
                            output = "ita/cv_gambarota_ita.pdf")
@@ -81,13 +87,15 @@ if (which_cv == 1){
     
     # Knit the HTML version
     rmarkdown::render("cv_gambarota_eng.Rmd",
-                      params = list(pdf_mode = FALSE),
+                      params = list(pdf_mode = FALSE,
+                                    html_mode = TRUE),
                       output_file = "index.html",
                       quiet = T)
     # Knit the PDF version to temporary html location
     tmp_html_cv_loc <- fs::file_temp(ext = ".html")
     rmarkdown::render("cv_gambarota_eng.Rmd",
-                      params = list(pdf_mode = TRUE),
+                      params = list(pdf_mode = TRUE,
+                                    html_mode = FALSE),
                       output_file = tmp_html_cv_loc,
                       quiet = T)
     # Convert to PDF using Pagedown
