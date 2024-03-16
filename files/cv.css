@@ -69,6 +69,10 @@
   /*color: aquamarine;*/
 }
 
+.pdf {
+  text-align: center;
+}
+
 /* adapt stylesheet for print
 from: https://github.com/quarto-dev/quarto-cli/discussions/2538#discussioncomment-4081842 */
 

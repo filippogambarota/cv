@@ -14,8 +14,8 @@ format:
     toc: true
     toc-title: Sections
     embed-resources: true
-  pdf: default
-format-links: [pdf]
+    output-file: index
+    output-ext: html
 knitr:
   opts_chunk:
     echo: false
@@ -45,6 +45,10 @@ cv <- get_online_cv()
 bib <- get_publications()
 if(!file.exists(here("files", "signature.png"))) download_sign()
 ```
+
+:::{.pdf .no-print}
+Download the [PDF](index.pdf) version
+:::
 
 I am a **postdoctoral researcher** at the University of Padova, department of Developmental Psychology and Socialization (DPSS) and **licensed psychologist**. I am interested in meta-analysis, Monte Carlo simulations for power and design analysis and multiverse analysis.
 
