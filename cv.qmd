@@ -14,9 +14,7 @@ format:
     toc: true
     toc-title: Sections
     embed-resources: true
-    output-file: "index"
-    output-ext:  "html"
----
+  pdf: default
 knitr:
   opts_chunk:
     echo: false
@@ -327,4 +325,5 @@ The CoLab, established at the Department of Developmental Psychology of the Univ
 
 </br>
 </br>
+
 ![](files/signature.png){.signature}

@@ -76,55 +76,8 @@ add_css_class <- function(x, class){
   sprintf("[%s]{%s}", x, class)
 }
 
-update_cv <- function(which = "cv", upload = FALSE){
-    gdrive <- "https://drive.google.com/drive/u/0/folders/1wEXXzfboKaJg0pI-ewfFmmxZBX2CK2lI"
-    if(!file.exists("img/signature.png")){
-        download_sign()
-    }
-
-    if(which == "cv"){
-        outname <- "index.html"
-        outname_pdf <- "docs/cv.pdf"
-        msg <- "CV updated! :)"
-    }else{
-        outname_pdf <- "docs/temp.pdf"
-        msg <- "temporary CV updated! :)"
-    }
-
-    if(which == "cv"){
-        out_html <- rmarkdown::render("cv.Rmd",
-                                      output_dir = "docs",
-                                      output_file = outname,
-                                      quiet = TRUE,
-                                      params = list(pdf_mode = FALSE,
-                                                    html_mode = TRUE,
-                                                    which = which))
-    }
-
-    out_html_pdf <- rmarkdown::render("cv.Rmd",
-                                  output_dir = "docs",
-                                  output_file = "temp",
-                                  quiet = TRUE,
-                                  params = list(pdf_mode = TRUE,
-                                                html_mode = FALSE,
-                                                which = which))
-
-    pagedown::chrome_print(out_html_pdf, output = outname_pdf)
-    fs::file_delete(out_html_pdf)
-
-    cli::cli_alert_success(msg)
-
-    if(upload & which == "cv"){
-        gert::git_add(c("cv.Rmd", "docs/", "data/")) # adding
-        gert::git_commit("updating cv")
-        gert::git_push()
-        cli::cli_alert_success("CV uploaded on Github! :)")
-        gdrive <- googledrive::as_dribble(gdrive)
-        cv_gdrive <- googledrive::drive_upload(outname_pdf,
-                                               gdrive,
-                                               overwrite = TRUE,
-                                               verbose = FALSE)
-        googledrive::drive_share_anyone(cv_gdrive)
-        cli::cli_alert_success("CV shared and uploaded on Google Drive! :)")
-    }
+render_cv <- function(){
+  quarto::quarto_render("cv.qmd", output_format = "html", output_file = "index.html",
+                        quiet = TRUE)
+  pagedown::chrome_print("index.html", output = "cv.pdf")
 }
