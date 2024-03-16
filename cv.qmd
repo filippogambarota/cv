@@ -1,0 +1,327 @@
+---
+name: "Filippo Gambarota"
+email: filippo.gambarota@unipd.it
+github: filippogambarota
+twitter: fgambarota
+date: last-modified
+date-format: long
+orcid: "`r filor::fil()$orcid`"
+format: 
+  html:
+    page-layout: article
+    css: files/cv.css
+    template: files/template.html
+    toc: true
+    toc-title: Sections
+    embed-resources: true
+knitr:
+  opts_chunk:
+    echo: false
+# filters:
+#   - files/dociteproc.lua
+#   - files/boldname.lua
+# citeproc: false
+# nocite: |
+#   @*
+# bibliography: files/ref.bib
+# csl: "`r filor::fil()$csl`"
+# # https://www.neilwright.uk/posts/quarto-bibliography-format-name
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(RefManageR)
+library(tidyverse)
+library(googledrive)
+library(here)
+devtools::load_all()
+
+drive_auth("filippo.gambarota@gmail.com")
+cv <- get_online_cv()
+bib <- get_publications()
+if(!file.exists(here("files", "signature.png"))) download_sign()
+```
+
+I am a **postdoctoral researcher** at the University of Padova, department of Developmental Psychology and Socialization (DPSS) and **licensed psychologist**. I am interested in meta-analysis, Monte Carlo simulations for power and design analysis and multiverse analysis.
+
+## Current position
+
+```{r}
+#| results: asis
+#| echo: false
+
+research <- cv$research[cv$research$order == 1, ]
+for(i in 1:nrow(research)){
+  make_entry(research$title[i], 
+             research$date[i],
+             research$place[i],
+             research$details[i])
+  cat("\n\n")
+}
+```
+
+## Academic roles
+
+[2023 - ongoing]{.cvdate} 
+[Cultore della Materia (Teaching Assistant) of Psychometrics (M-PSI/03)]{.what} </br> {{< fa location-dot >}} [University of Padova]{.place} 
+
+## Research
+
+```{r}
+#| results: asis
+#| echo: false
+
+research <- cv$research[cv$research$order != 1, ]
+for(i in 1:nrow(research)){
+  make_entry(research$title[i], 
+             research$date[i],
+             research$place[i],
+             research$details[i])
+  cat("\n\n")
+}
+```
+
+## Education
+
+```{r}
+#| results: asis
+#| echo: false
+for(i in 1:nrow(cv$main_education)){
+  make_entry(cv$main_education$title[i], 
+             cv$main_education$date[i],
+             cv$main_education$place[i])
+  if(!is.na(cv$main_education$details[i])){
+    cat(cv$main_education$details[i])
+  }
+  cat("\n\n")
+}
+```
+
+## Awards
+
+```{r}
+#| results: asis
+#| echo: false
+cv$awards |> 
+  format_all(format_awards)
+```
+
+## Training
+
+```{r}
+#| results: asis
+#| echo: false
+for(i in 1:nrow(cv$training)){
+  make_entry(cv$training$title[i], 
+             cv$training$date[i],
+             cv$training$place[i],
+             cv$training$details[i])
+  cat("\n\n")
+}
+```
+
+## Teaching
+
+```{r}
+#| results: asis
+#| echo: false
+cv$teaching |> 
+  format_all(format_teaching)
+```
+
+## Dissertations
+
+```{r}
+#| echo: false
+nmasters <- sum(cv$dissertations$Degree == "Master's")
+nbachelors <- sum(cv$dissertations$Degree != "Master's")
+```
+
+I have co-supervised `r nmasters` Master's degree dissertations and `r nbachelors` Bachelor's degree dissertations.
+
+## Publications
+
+```{r}
+#| results: asis
+#| echo: false
+#| eval: true
+
+# for(i in 1:length(bib)){
+#   out <- capture.output(print(bib[[i]], .opts = list(bib.style = "authoryear")))
+# out <- gsub("Gambarota", "**Gambarota**", out)
+# cat("1.", out, sep = " ", "\n\n")
+# }
+NoCite(bib)
+PrintBibliography(bib, .opts = list(bib.style = "authoryear", sorting = "ydnt", max.names = 100)) |> 
+  capture.output() |> 
+  gsub(pattern = "Gambarota", replacement = "**Gambarota**", x = _) |> 
+  cat(sep = "\n")
+```
+
+<!-- :::{#refs} -->
+<!-- ::: -->
+
+### Accepted
+
+```{r}
+#| results: asis
+for(i in 1:nrow(cv$accepted_publications)){
+  accepted <- sprintf(
+    "%s - %s - *%s* [%s]",
+    bold_my_name(cv$accepted_publications$authors[i]),
+    cv$accepted_publications$title[i],
+    cv$accepted_publications$journal[i],
+    cv$accepted_publications$status[i]
+  )
+  cat(accepted)
+  cat("\n")
+}
+```
+
+### Under Review
+
+```{r}
+#| results: asis
+for(i in 1:nrow(cv$under_review)){
+  preprint <- sprintf(
+      "%s - %s",
+      bold_my_name(cv$under_review$authors[i]),
+      cv$under_review$title[i]
+    )
+  if(!is.na(cv$under_review$preprint[i])){
+    preprint <- paste(preprint, sprintf("[[Preprint](%s)]", cv$under_review$preprint[i]))
+  }
+  cat(preprint)
+  cat("\n")
+}
+```
+
+## Conferences
+
+### Invited Talks
+
+```{r}
+#| results: asis
+cv$conferences |> 
+  filter(type == "Invited") |> 
+  format_all(format_conf)
+```
+
+### Talks
+
+```{r}
+#| results: asis
+cv$conferences |> 
+  filter(type == "Talk") |> 
+  format_all(format_conf)
+```
+
+### Posters
+
+```{r}
+#| results: asis
+cv$conferences |> 
+  filter(type == "Poster") |> 
+  format_all(format_conf)
+```
+
+## Peer Reviews
+
+See my Publons profile [https://www.webofscience.com/wos/author/record/G-9799-2015](https://www.webofscience.com/wos/author/record/G-9799-2015)
+
+Ad-hoc reviewer for:
+
+```{r}
+#| echo: false
+#| results: asis
+cat(sprintf("- %s", cv$reviews$journal), sep = "\n")
+```
+
+## Professional Memberships
+
+```{r}
+#| results: asis
+#| echo: false
+cv$memberships |> 
+  format_all(format_memb)
+```
+
+## Organization
+
+```{r}
+#| results: asis
+#| echo: false
+for(i in 1:nrow(cv$other_academic)){
+  make_entry(cv$other_academic$title[i], 
+             cv$other_academic$date[i],
+             cv$other_academic$place[i],
+             cv$other_academic$details[i])
+  cat("\n\n")
+}
+```
+
+## Third Mission (Terza Missione)
+
+```{r}
+#| results: asis
+#| echo: false
+for(i in 1:nrow(cv$terza_missione)){
+  details <- sprintf("%s **[Iris ID: %s]**", cv$terza_missione$details[i], cv$terza_missione$iris_id[i])
+  make_entry(cv$terza_missione$title[i], 
+             cv$terza_missione$date[i],
+             cv$terza_missione$place[i],
+             details)
+  cat("\n\n")
+}
+```
+
+## Research Groups
+
+[2019 - ongoing]{.cvdate} [Psicostat - [psicostat.dpss.psy.unipd.it](https://psicostat.dpss.psy.unipd.it/)]{.what}
+
+We are an interdisciplinary research group working in areas related to quantitative psychology, psychometrics, psychological testing and statistics.
+
+[2019 - ongoing]{.cvdate} [Colab [colab.psy.unipd.it](http://colab.psy.unipd.it/)]{.what}
+
+The CoLab, established at the Department of Developmental Psychology of the University of Padova in the 2000, hosts a variety of research projects, which focus primarily on exploring the functional and neural mechanisms subserving attention and language abilities in human adults.
+
+## Research Skills
+
+### OS {.skills}
+
+- Linux, Windows, MacOS
+
+### Programming languages {.skills}
+
+- R (advanced)
+- MATLAB (good)
+- Python (good)
+- Javascript (basic)
+
+### Writing {.skills}
+
+- LaTeX
+- HTML, CSS
+- Pandoc
+- (R)Markdown
+- Quarto
+
+### Experiments {.skills}
+
+- Psychopy (advanced)
+- Eprime
+- Presentation
+- Psychtoolbox
+
+### EEG/ERP {.skills}
+
+- EEGlab
+- ERPlab
+- Brainstorm
+- Brainvision Analyzer
+
+</br>
+</br>
+![](files/signature.png){.signature}
