@@ -79,5 +79,5 @@ add_css_class <- function(x, class){
 render_cv <- function(){
   quarto::quarto_render("cv.qmd", output_format = "html", output_file = "index.html",
                         quiet = TRUE)
-  pagedown::chrome_print("index.html", output = "cv.pdf")
+  pagedown::chrome_print("index.html")
 }

@@ -15,6 +15,7 @@ format:
     toc-title: Sections
     embed-resources: true
   pdf: default
+format-links: [pdf]
 knitr:
   opts_chunk:
     echo: false
