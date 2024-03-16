@@ -326,4 +326,6 @@ The CoLab, established at the Department of Developmental Psychology of the Univ
 </br>
 </br>
 
+:::{.print-only}
 ![](files/signature.png){.signature}
+:::
