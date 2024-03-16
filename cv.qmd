@@ -14,6 +14,9 @@ format:
     toc: true
     toc-title: Sections
     embed-resources: true
+    output-file: "index"
+    output-ext:  "html"
+---
 knitr:
   opts_chunk:
     echo: false
