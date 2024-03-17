@@ -33,13 +33,6 @@ format_pub <- function(data, metrics = TRUE){
 }
 
 format_teaching <- function(data){
-  if(!"date" %in% names(data)){
-    date <- ifelse(is.na(data$date_end),
-                        data$date_start,
-                        paste0(data$date_start, " - ", data$date_end)
-    )
-  }
-
   title <- ifelse(!is.na(data$hours) & !is.na(data$cfu),
                   sprintf("%s (%s hrs., %s CFU)", data$title, data$hours, data$cfu),
                   ifelse(!is.na(data$hours) & is.na(data$cfu),
@@ -60,7 +53,7 @@ format_teaching <- function(data){
 
   make_entry(
     what = title,
-    date = date,
+    date = data$date,
     place = data$place,
     details = details
   )
@@ -102,7 +95,7 @@ format_conf <- function(data){
 }
 
 format_memb <- function(data){
-  cat(sprintf("%s (%s) %s", add_css_class(data$society, ".what"), data$abbr, add_css_class(paste("from:", data$from), ".cvdate")))
+  cat(sprintf("%s (%s) %s", add_css_class(data$society, ".what"), data$abbr, add_css_class(paste("from:", data$date), ".cvdate")))
   cat("\n\n")
 }
 
@@ -115,7 +108,7 @@ format_rev <- function(data){
 
 format_awards <- function(data){
   cat(sprintf("%s %s </br> %s",
-          add_css_class(data$year, ".cvdate"),
+          add_css_class(data$date, ".cvdate"),
           add_css_class(data$title, ".what"),
           data$details)
   )

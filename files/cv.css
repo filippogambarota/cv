@@ -10,6 +10,10 @@
 }
 */
 
+.smaller {
+  font-size: 80%;
+}
+
 .date {
   text-align: center;
   margin-top: 20px;
@@ -51,8 +55,8 @@
 }
 
 .details {
-  text-indent: 20px;
   font-size: 85%;
+  display: block;
 }
 
 .cvdate {
@@ -108,9 +112,7 @@ from: https://github.com/quarto-dev/quarto-cli/discussions/2538#discussioncommen
   header {
     margin-block-end: 5em;
   }
-  header h1.title {
-      display: none;
-  }
+
   header .author {
     font-size: 2em;
     font-weight: 900;

@@ -13,7 +13,7 @@ format:
     template: files/template.html
     toc: true
     toc-title: Sections
-    embed-resources: true
+    #embed-resources: true
     output-file: index
     output-ext: html
 knitr:
@@ -58,6 +58,9 @@ I am a **postdoctoral researcher** at the University of Padova, department of De
 #| results: asis
 #| echo: false
 
+research <- cv$research |> 
+  arrange(desc(order))
+
 research <- cv$research[cv$research$order == 1, ]
 for(i in 1:nrow(research)){
   make_entry(research$title[i], 
@@ -79,6 +82,9 @@ for(i in 1:nrow(research)){
 #| results: asis
 #| echo: false
 
+research <- cv$research |> 
+  arrange(desc(order))
+
 research <- cv$research[cv$research$order != 1, ]
 for(i in 1:nrow(research)){
   make_entry(research$title[i], 
@@ -94,13 +100,14 @@ for(i in 1:nrow(research)){
 ```{r}
 #| results: asis
 #| echo: false
-for(i in 1:nrow(cv$main_education)){
-  make_entry(cv$main_education$title[i], 
-             cv$main_education$date[i],
-             cv$main_education$place[i])
-  if(!is.na(cv$main_education$details[i])){
-    cat(cv$main_education$details[i])
-  }
+
+education <- cv$main_education |> 
+  arrange(order)
+for(i in 1:nrow(education)){
+  make_entry(education$title[i], 
+             education$date[i],
+             education$place[i],
+             education$details[i])
   cat("\n\n")
 }
 ```
@@ -111,6 +118,7 @@ for(i in 1:nrow(cv$main_education)){
 #| results: asis
 #| echo: false
 cv$awards |> 
+  arrange(desc(date)) |> 
   format_all(format_awards)
 ```
 
@@ -119,11 +127,14 @@ cv$awards |>
 ```{r}
 #| results: asis
 #| echo: false
-for(i in 1:nrow(cv$training)){
-  make_entry(cv$training$title[i], 
-             cv$training$date[i],
-             cv$training$place[i],
-             cv$training$details[i])
+
+training <- cv$training |> 
+  arrange(desc(date))
+for(i in 1:nrow(training)){
+  make_entry(training$title[i], 
+             training$date[i],
+             training$place[i],
+             training$details[i])
   cat("\n\n")
 }
 ```
@@ -134,6 +145,7 @@ for(i in 1:nrow(cv$training)){
 #| results: asis
 #| echo: false
 cv$teaching |> 
+  arrange(desc(month), order) |> 
   format_all(format_teaching)
 ```
 
@@ -141,8 +153,8 @@ cv$teaching |>
 
 ```{r}
 #| echo: false
-nmasters <- sum(cv$dissertations$Degree == "Master's")
-nbachelors <- sum(cv$dissertations$Degree != "Master's")
+nmasters <- sum(cv$dissertations$degree == "Master's")
+nbachelors <- sum(cv$dissertations$degree != "Master's")
 ```
 
 I have co-supervised `r nmasters` Master's degree dissertations and `r nbachelors` Bachelor's degree dissertations.
@@ -211,6 +223,7 @@ for(i in 1:nrow(cv$under_review)){
 ```{r}
 #| results: asis
 cv$conferences |> 
+  arrange(desc(date)) |> 
   filter(type == "Invited") |> 
   format_all(format_conf)
 ```
@@ -220,6 +233,7 @@ cv$conferences |>
 ```{r}
 #| results: asis
 cv$conferences |> 
+  arrange(desc(date)) |> 
   filter(type == "Talk") |> 
   format_all(format_conf)
 ```
@@ -229,6 +243,7 @@ cv$conferences |>
 ```{r}
 #| results: asis
 cv$conferences |> 
+  arrange(desc(date)) |> 
   filter(type == "Poster") |> 
   format_all(format_conf)
 ```
@@ -259,11 +274,15 @@ cv$memberships |>
 ```{r}
 #| results: asis
 #| echo: false
-for(i in 1:nrow(cv$other_academic)){
-  make_entry(cv$other_academic$title[i], 
-             cv$other_academic$date[i],
-             cv$other_academic$place[i],
-             cv$other_academic$details[i])
+
+other <- cv$other_academic |> 
+  arrange(desc(date))
+
+for(i in 1:nrow(other)){
+  make_entry(other$title[i], 
+             other$date[i],
+             other$place[i],
+             other$details[i])
   cat("\n\n")
 }
 ```
@@ -273,11 +292,15 @@ for(i in 1:nrow(cv$other_academic)){
 ```{r}
 #| results: asis
 #| echo: false
-for(i in 1:nrow(cv$terza_missione)){
-  details <- sprintf("%s **[Iris ID: %s]**", cv$terza_missione$details[i], cv$terza_missione$iris_id[i])
-  make_entry(cv$terza_missione$title[i], 
-             cv$terza_missione$date[i],
-             cv$terza_missione$place[i],
+
+terza_missione <- cv$terza_missione |> 
+  arrange(desc(date))
+
+for(i in 1:nrow(terza_missione)){
+  details <- sprintf("%s **[Iris ID: %s]**", terza_missione$details[i], terza_missione$iris_id[i])
+  make_entry(terza_missione$title[i], 
+             terza_missione$date[i],
+             terza_missione$place[i],
              details)
   cat("\n\n")
 }
