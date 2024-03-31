@@ -13,7 +13,7 @@ format:
     template: files/template.html
     toc: true
     toc-title: Sections
-    #embed-resources: true
+    embed-resources: true
     output-file: index
     output-ext: html
 knitr:
@@ -38,12 +38,16 @@ library(RefManageR)
 library(tidyverse)
 library(googledrive)
 library(here)
+library(scholar)
 devtools::load_all()
 
 drive_auth("filippo.gambarota@gmail.com")
 cv <- get_online_cv()
 bib <- get_publications()
 if(!file.exists(here("files", "signature.png"))) download_sign()
+fg_scholar_id <- "f836QNAAAAAJ"
+fg_scholar <- get_profile(fg_scholar_id)
+scholar_data <- get_citation_history(fg_scholar_id)
 ```
 
 :::{.pdf .no-print}
@@ -157,9 +161,36 @@ nmasters <- sum(cv$dissertations$degree == "Master's")
 nbachelors <- sum(cv$dissertations$degree != "Master's")
 ```
 
-I have co-supervised `r nmasters` Master's degree dissertations and `r nbachelors` Bachelor's degree dissertations.
+I have co-supervised **`r nmasters` Master's degree** dissertations and **`r nbachelors` Bachelor's degree** dissertations.
 
 ## Publications
+
+### Google Scholar
+
+- H-index: **`r fg_scholar$h_index`**
+- Citations: **`r fg_scholar$total_cites`**
+
+:::{.no-print}
+
+::: {.callout-note icon=false appearance="minimal" collapse=true}
+
+## Citations Plot
+
+```{r}
+#| echo: false
+scholar_data |> 
+  ggplot(aes(x = year, y = cites)) +
+  geom_point(size = 3) +
+  geom_line() +
+  xlab("Year") +
+  ylab("# Citations") +
+  theme_minimal(15)
+```
+:::
+
+:::
+
+### Published (`r length(bib)`)
 
 ```{r}
 #| results: asis
@@ -181,7 +212,7 @@ PrintBibliography(bib, .opts = list(bib.style = "authoryear", sorting = "ydnt", 
 <!-- :::{#refs} -->
 <!-- ::: -->
 
-### Accepted
+### Accepted (`r nrow(cv$accepted_publications)`)
 
 ```{r}
 #| results: asis
@@ -198,7 +229,7 @@ for(i in 1:nrow(cv$accepted_publications)){
 }
 ```
 
-### Under Review
+### Under Review (`r nrow(cv$under_review)`)
 
 ```{r}
 #| results: asis
@@ -218,7 +249,11 @@ for(i in 1:nrow(cv$under_review)){
 
 ## Conferences
 
-### Invited Talks
+```{r}
+nconf <- tapply(cv$conferences$title, cv$conferences$type, length)
+```
+
+### Invited Talks (`r nconf["Invited"]`)
 
 ```{r}
 #| results: asis
@@ -228,7 +263,7 @@ cv$conferences |>
   format_all(format_conf)
 ```
 
-### Talks
+### Talks (`r nconf["Talk"]`)
 
 ```{r}
 #| results: asis
@@ -238,7 +273,7 @@ cv$conferences |>
   format_all(format_conf)
 ```
 
-### Posters
+### Posters (`r nconf["Poster"]`)
 
 ```{r}
 #| results: asis

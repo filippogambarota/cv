@@ -57,7 +57,7 @@ format_teaching <- function(data){
     place = data$place,
     details = details
   )
-  br(2)
+  br(1)
 }
 
 format_conf <- function(data){
@@ -69,10 +69,10 @@ format_conf <- function(data){
                     authors)
 
   video <- ifelse(!is.na(data$link_talk),
-                  sprintf("[Video](%s)", data$link_talk),
+                  sprintf("[[Video](%s)]", data$link_talk),
                   NA)
   materials <- ifelse(!is.na(data$link_materials),
-                      sprintf("[%s](%s)", data$type_material, data$link_materials),
+                      sprintf("[[%s](%s)]", data$type_material, data$link_materials),
                       NA)
   video_materials <- c(video, materials)
   video_materials <- video_materials[!is.na(video_materials)]
@@ -89,8 +89,8 @@ format_conf <- function(data){
   }
 
   place <- sprintf("%s - %s", data$conference, data$place)
-  what <- sprintf("%s </br> %s", authors, data$title)
-  make_entry(what, data$date, place)
+  # what <- sprintf("%s </br> %s", authors, data$title)
+  make_entry(what = data$title, date = data$date, place = place, what2 = authors)
   br(2)
 }
 
@@ -171,14 +171,22 @@ br <- function(n = 1){
 }
 
 
-make_entry <- function(what = NA, date = NA, place = NA, details = NA){
+make_entry <- function(what = NA, date = NA, place = NA, details = NA, what2 = NA){
 
   what <- if(!is.na(what)) add_css_class(what, ".what") else what
+  what2 <- if(!is.na(what2)) add_css_class(what2, ".what2") else what2
   date <- if(!is.na(date)) add_css_class(date, ".cvdate") else date
   place <- if(!is.na(place)) add_css_class(place, ".where") else place
   details <- if(!is.na(details)) add_css_class(details, ".details") else details
 
-  entry <- sprintf("%s </br> {{< fa location-dot >}} %s", what, place)
+  # entry <- sprintf("%s </br> {{< fa location-dot >}} %s", what, place)
+
+  if(!is.na(what2)){
+    entry <- sprintf("%s </br> %s </br> *%s*", what2, what, place)
+  }else{
+    entry <- sprintf("%s </br> *%s*", what, place)
+  }
+
   cat(date, "\n")
   cat(entry, "\n")
   if(!is.na(details)){
