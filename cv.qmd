@@ -19,6 +19,9 @@ format:
 knitr:
   opts_chunk:
     echo: false
+include-in-header:
+  - text: |
+      <link rel = "shortcut icon" href = "files/my-favicon.ico" />
 ---
 
 ```{r}
