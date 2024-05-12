@@ -19,15 +19,6 @@ format:
 knitr:
   opts_chunk:
     echo: false
-# filters:
-#   - files/dociteproc.lua
-#   - files/boldname.lua
-# citeproc: false
-# nocite: |
-#   @*
-# bibliography: files/ref.bib
-# csl: "`r filor::fil()$csl`"
-# # https://www.neilwright.uk/posts/quarto-bibliography-format-name
 ---
 
 ```{r}
@@ -39,6 +30,7 @@ library(tidyverse)
 library(googledrive)
 library(here)
 library(scholar)
+library(kableExtra)
 devtools::load_all()
 
 drive_auth("filippo.gambarota@gmail.com")
@@ -78,7 +70,7 @@ for(i in 1:nrow(research)){
 ## Academic roles
 
 [2023 - ongoing]{.cvdate} 
-[Cultore della Materia (Teaching Assistant) of Psychometrics (M-PSI/03)]{.what} </br> {{< fa location-dot >}} [University of Padova]{.place} 
+[Expert (Cultore della Materia) of Psychometrics (M-PSI/03)]{.what} </br> *[Department of Developmental Psychology and Socialization, University of Padova, Italy]{.where}*
 
 ## Research
 
@@ -145,15 +137,90 @@ for(i in 1:nrow(training)){
 
 ## Teaching
 
+### PhD
+
+These course are part of the PhD program in Psychological Sciences at the University of Padova.
+
+```{r}
+#| results: asis
+#| echo: false
+phd <- cv$teaching |> 
+  filter(type == "phd") |> 
+  group_nest(title, details, keep = TRUE)
+
+for(i in 1:nrow(phd)){
+  format_teaching(phd$data[[i]])
+}
+```
+
+### Lectures on contract (docenze a contratto)
+
+```{r}
+#| results: asis
+#| echo: false
+cfu <- cv$teaching |> 
+  filter(type == "cfu") |> 
+  group_nest(title, details, keep = TRUE)
+
+for(i in 1:nrow(cfu)){
+  format_teaching(cfu$data[[i]])
+}
+```
+
+### Seminars
+
+```{r}
+#| results: asis
+#| echo: false
+seminars <- cv$teaching |> 
+  filter(type == "seminars") |> 
+  group_nest(title, details, keep = TRUE)
+
+for(i in 1:nrow(seminars)){
+  format_teaching(seminars$data[[i]])
+}
+```
+
+### Integrative teaching (didattica integrativa)
+
+```{r}
+#| results: asis
+#| echo: false
+integrative <- cv$teaching |> 
+  filter(type == "integrative") |> 
+  group_nest(title, details, keep = TRUE)
+
+for(i in 1:nrow(integrative)){
+  format_teaching(integrative$data[[i]])
+}
+```
+
+### Methodological Schools
+
+```{r}
+#| results: asis
+#| echo: false
+schools <- cv$teaching |> 
+  filter(type == "schools") |> 
+  group_nest(title, details, keep = TRUE)
+
+for(i in 1:nrow(schools)){
+  format_teaching(schools$data[[i]])
+}
+```
+
+### Lectures
+
 ```{r}
 #| results: asis
 #| echo: false
 cv$teaching |> 
+  filter(type == "lecture") |> 
   arrange(desc(month), order) |> 
   format_all(format_teaching)
 ```
 
-## Dissertations
+## Supervision
 
 ```{r}
 #| echo: false
@@ -161,14 +228,57 @@ nmasters <- sum(cv$dissertations$degree == "Master's")
 nbachelors <- sum(cv$dissertations$degree != "Master's")
 ```
 
-I have co-supervised **`r nmasters` Master's degree** dissertations and **`r nbachelors` Bachelor's degree** dissertations.
+- I have co-supervised **`r nmasters` Master's degree** dissertations and **`r nbachelors` Bachelor's degree** dissertations (Department of Developmental Psychology and Socialization, University of Padova, Italy).
+- From 2017 to 2019 I supervised and coordinated the students during EEG training in the laboratory (Department of Developmental Psychology and Socialization, University of Padova, Italy)
+
+:::{.no-print}
+
+::: {.callout-note icon=false appearance="minimal" collapse=true}
+
+## Dissertations
+
+```{r}
+cv$dissertations |> 
+  mutate(Student = paste(name, surname)) |>
+  select(Student, title, date, degree, -name, -surname) |> 
+  rename_with(.fn = str_to_title) |> 
+  rename("Year" = Date) |> 
+  arrange(desc(Year), Student) |> 
+  kable() |> 
+  kable_styling(full_width = FALSE)
+```
+
+:::
+
+:::
 
 ## Publications
 
-### Google Scholar
+[Journal impact factors and quartiles are taken from **Journal Citation Reports** considering the last available data]{.details}
+
+```{r}
+quartile <- table(cv$publication_metrics$Quartile)
+quartile <- sprintf("%s papers in %s journals", quartile, names(quartile))
+quartile <- paste0(quartile, collapse = ", ")
+```
+
+I published `r length(bib)` papers on journals with an average impact factor of `r mean(cv$publication_metrics$IF)`. In terms of quartiles, I published `r quartile`.
+
+```{r}
+npreprint <- nrow(cv$preprint)
+naccepted <- nrow(cv$accepted_publications)
+nunderreview <- nrow(cv$under_review)
+```
+
+#### Google Scholar
 
 - H-index: **`r fg_scholar$h_index`**
 - Citations: **`r fg_scholar$total_cites`**
+
+#### Scopus
+
+- H-index: **4**
+- Citations: **36**
 
 :::{.no-print}
 
@@ -197,24 +307,43 @@ scholar_data |>
 #| echo: false
 #| eval: true
 
-# for(i in 1:length(bib)){
-#   out <- capture.output(print(bib[[i]], .opts = list(bib.style = "authoryear")))
-# out <- gsub("Gambarota", "**Gambarota**", out)
-# cat("1.", out, sep = " ", "\n\n")
-# }
+# NoCite(bib)
+# PrintBibliography(bib, .opts = list(bib.style = "authoryear", sorting = "ydnt", max.names = 100)) |> 
+#   capture.output() |> 
+#   gsub(pattern = "Gambarota", replacement = "**Gambarota**", x = _) |> 
+#   cat(sep = "\n")
+
 NoCite(bib)
-PrintBibliography(bib, .opts = list(bib.style = "authoryear", sorting = "ydnt", max.names = 100)) |> 
+bib_print <- PrintBibliography(bib, .opts = list(bib.style = "authoryear", sorting = "ydnt", max.names = 100)) |> 
   capture.output() |> 
-  gsub(pattern = "Gambarota", replacement = "**Gambarota**", x = _) |> 
-  cat(sep = "\n")
+  gsub(pattern = "Gambarota", replacement = "**Gambarota**", x = _)
+
+end <- c(grep("^\\s*$", bib_print))
+start <- c(1, end + 1)
+end <- c(end, length(bib_print))
+
+bib_list <- mapply(function(s, e) bib_print[s:e], start, end)
+bib_list <- lapply(bib_list, function(x) x[!grepl("^\\s*$", x)])
+bib_keys <- unname(names(bib))
+
+for(i in 1:length(bib_list)){
+  metr <- filter(cv$publication_metrics, key == bib_keys[i])
+  cat(bib_list[[i]], "\n")
+  cat(sprintf("[IF: %s, Quartile: %s]", metr$IF[1], metr$Quartile[1]))
+  cat("\n\n")
+}
 ```
 
 <!-- :::{#refs} -->
 <!-- ::: -->
 
-### Accepted (`r nrow(cv$accepted_publications)`)
+```{r include=naccepted > 0}
+#| results: asis
+header <- sprintf("Accepted (%s)", naccepted)
+pander::pandoc.header(header, 3)
+```
 
-```{r}
+```{r include=naccepted > 0}
 #| results: asis
 for(i in 1:nrow(cv$accepted_publications)){
   accepted <- sprintf(
@@ -229,9 +358,13 @@ for(i in 1:nrow(cv$accepted_publications)){
 }
 ```
 
-### Under Review (`r nrow(cv$under_review)`)
+```{r include=nunderreview > 0}
+#| results: asis
+header <- sprintf("Under Review (%s)", nunderreview)
+pander::pandoc.header(header, 3)
+```
 
-```{r}
+```{r include=nunderreview > 0}
 #| results: asis
 for(i in 1:nrow(cv$under_review)){
   preprint <- sprintf(
@@ -265,6 +398,8 @@ cv$conferences |>
 
 ### Talks (`r nconf["Talk"]`)
 
+[*[P]* means that I was the presenting authors]{.details}
+
 ```{r}
 #| results: asis
 cv$conferences |> 
@@ -274,6 +409,8 @@ cv$conferences |>
 ```
 
 ### Posters (`r nconf["Poster"]`)
+
+[*[P]* means that I was the presenting authors]{.details}
 
 ```{r}
 #| results: asis
@@ -285,7 +422,7 @@ cv$conferences |>
 
 ## Peer Reviews
 
-See my Publons profile [https://www.webofscience.com/wos/author/record/G-9799-2015](https://www.webofscience.com/wos/author/record/G-9799-2015)
+See my [Publons Profile](https://www.webofscience.com/wos/author/record/G-9799-2015)
 
 Ad-hoc reviewer for:
 
@@ -353,38 +490,41 @@ The CoLab, established at the Department of Developmental Psychology of the Univ
 
 ## Research Skills
 
+Rated as 1 (basic knowledge) to 5 (advanced knowledge).
+
 ### OS {.skills}
 
-- Linux, Windows, MacOS
+- Linux (4), Windows (3), MacOS (3)
 
 ### Programming languages {.skills}
 
-- R (advanced)
-- MATLAB (good)
-- Python (good)
-- Javascript (basic)
+- R (5)
+- MATLAB (3)
+- Python (3)
+- Javascript (2)
 
 ### Writing {.skills}
 
-- LaTeX
-- HTML, CSS
-- Pandoc
-- (R)Markdown
-- Quarto
+- LaTeX (4)
+- HTML (3)
+- CSS (3)
+- Pandoc (3)
+- (R)Markdown (5)
+- Quarto (5)
 
 ### Experiments {.skills}
 
-- Psychopy (advanced)
-- Eprime
-- Presentation
-- Psychtoolbox
+- Psychopy (5)
+- Eprime (3)
+- Presentation (4)
+- Psychtoolbox (3)
 
 ### EEG/ERP {.skills}
 
-- EEGlab
-- ERPlab
-- Brainstorm
-- Brainvision Analyzer
+- EEGlab (3)
+- ERPlab (3)
+- Brainstorm (1)
+- Brainvision Analyzer (2)
 
 </br>
 </br>

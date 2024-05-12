@@ -32,30 +32,84 @@ format_pub <- function(data, metrics = TRUE){
     cat(data$authors, "\n\n")
 }
 
+# format_teaching <- function(data){
+#   title <- ifelse(!is.na(data$hours) & !is.na(data$cfu),
+#                   sprintf("%s (%s hrs., %s CFU)", data$title, data$hours, data$cfu),
+#                   ifelse(!is.na(data$hours) & is.na(data$cfu),
+#                          sprintf("%s (%s hrs.)", data$title, data$hours),
+#                          data$title))
+#
+#   if(!is.na(data$details)){
+#     if(!is.na(data$materials)){
+#       details <- sprintf("%s [[Materials](%s)]", data$details, data$materials)
+#     }else{
+#       details <- data$details
+#     }
+#   }else{
+#     if(!is.na(data$materials)){
+#       details <- sprintf("[[Materials](%s)]", data$details, data$materials)
+#     }
+#   }
+#
+#   make_entry(
+#     what = title,
+#     date = data$date,
+#     place = data$place,
+#     details = details
+#   )
+#   br(1)
+# }
+
 format_teaching <- function(data){
-  title <- ifelse(!is.na(data$hours) & !is.na(data$cfu),
-                  sprintf("%s (%s hrs., %s CFU)", data$title, data$hours, data$cfu),
-                  ifelse(!is.na(data$hours) & is.na(data$cfu),
-                         sprintf("%s (%s hrs.)", data$title, data$hours),
-                         data$title))
-
-  if(!is.na(data$details)){
-    if(!is.na(data$materials)){
-      details <- sprintf("%s [[Materials](%s)]", data$details, data$materials)
+  if(nrow(data) > 1){
+    title <- unique(data$title)
+    details <- ifelse(!is.na(data$details),
+                      ifelse(!is.na(data$materials),
+                             sprintf("%s [[Materials](%s)]", data$details, data$materials),
+                             data$details),
+                      sprintf("[[Materials](%s)]", data$details, data$materials))
+    details <- unique(details)
+    date <- sort(data$date)
+    if(tail(date, 1) < format(Sys.Date(), format = "%Y")){
+      date <- paste0(date[1], " - ", tail(date, 1))
     }else{
-      details <- data$details
+      date <- paste0(date[1], " - ", "ongoing")
     }
-  }else{
-    if(!is.na(data$materials)){
-      details <- sprintf("[[Materials](%s)]", data$details, data$materials)
-    }
-  }
+    place <- unique(data$place)
+    date_details <- sort(data$month, decreasing = TRUE)
+    details_events <- sprintf("- %s (%s hrs.)",
+                              format(date_details, format = "%B %Y"),
+                              data$hours
+    )
+    details_events <- paste0(details_events, collapse = "\n\n")
+  } else{
+    title <- ifelse(!is.na(data$hours) & !is.na(data$cfu),
+                    sprintf("%s (%s hrs., %s CFU)", data$title, data$hours, data$cfu),
+                    ifelse(!is.na(data$hours) & is.na(data$cfu),
+                           sprintf("%s (%s hrs.)", data$title, data$hours),
+                           data$title))
 
+    if(!is.na(data$details)){
+      if(!is.na(data$materials)){
+        details <- sprintf("%s [[Materials](%s)]", data$details, data$materials)
+      }else{
+        details <- data$details
+      }
+    }else{
+      if(!is.na(data$materials)){
+        details <- sprintf("[[Materials](%s)]", data$details, data$materials)
+      }
+    }
+    details_events <- NA
+    date <- data$date
+    place <- data$place
+  }
   make_entry(
     what = title,
-    date = data$date,
-    place = data$place,
-    details = details
+    date = date,
+    place = place,
+    details = details,
+    bullets = details_events
   )
   br(1)
 }
@@ -65,7 +119,7 @@ format_conf <- function(data){
   authors <- ifelse(startsWith(authors, "**Gambarota**"),
                     str_replace_all(authors[startsWith(authors, "**Gambarota**")],
                                     pattern = "\\*\\*Gambarota\\*\\*",
-                                    "\\*\\*Gambarota\\*\\* [presenter]"),
+                                    "\\*\\*Gambarota\\*\\* [P]"),
                     authors)
 
   video <- ifelse(!is.na(data$link_talk),
@@ -78,14 +132,12 @@ format_conf <- function(data){
   video_materials <- video_materials[!is.na(video_materials)]
   if(length(video_materials) > 0){
     video_materials <- paste(video_materials, collapse = ", ")
-    data$title <- sprintf("%s [*%s*] - %s",
+    data$title <- sprintf("%s - %s",
                                data$title,
-                               data$type,
                                video_materials)
   }else{
-    data$title <- sprintf("%s [*%s*]",
-                               data$title,
-                               data$type)
+    data$title <- sprintf("%s",
+                               data$title)
   }
 
   place <- sprintf("%s - %s", data$conference, data$place)
@@ -171,7 +223,7 @@ br <- function(n = 1){
 }
 
 
-make_entry <- function(what = NA, date = NA, place = NA, details = NA, what2 = NA){
+make_entry <- function(what = NA, date = NA, place = NA, details = NA, bullets = NA, what2 = NA){
 
   what <- if(!is.na(what)) add_css_class(what, ".what") else what
   what2 <- if(!is.na(what2)) add_css_class(what2, ".what2") else what2
@@ -192,5 +244,10 @@ make_entry <- function(what = NA, date = NA, place = NA, details = NA, what2 = N
   if(!is.na(details)){
     br()
     cat(details)
+  }
+  if(!is.na(bullets)){
+    cat("\n\n:::{.details}", "\n\n")
+    cat("\n\n", bullets, "\n\n")
+    cat(":::", "\n\n")
   }
 }
