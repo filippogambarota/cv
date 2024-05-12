@@ -81,7 +81,7 @@ format_teaching <- function(data){
                               format(date_details, format = "%B %Y"),
                               data$hours
     )
-    details_events <- paste0(details_events, collapse = "\n\n")
+    details_events <- paste0(details_events, collapse = "\n")
   } else{
     title <- ifelse(!is.na(data$hours) & !is.na(data$cfu),
                     sprintf("%s (%s hrs., %s CFU)", data$title, data$hours, data$cfu),
@@ -111,7 +111,7 @@ format_teaching <- function(data){
     details = details,
     bullets = details_events
   )
-  br(1)
+  cat("\n\n")
 }
 
 format_conf <- function(data){
@@ -247,7 +247,14 @@ make_entry <- function(what = NA, date = NA, place = NA, details = NA, bullets =
   }
   if(!is.na(bullets)){
     cat("\n\n:::{.details}", "\n\n")
-    cat("\n\n", bullets, "\n\n")
-    cat(":::", "\n\n")
+    cat("\n\n", bullets, "\n")
+    cat(":::", "\n")
   }
+}
+
+pb_skill <- function(x, max = 5){
+  skill <- paste0(rep("🔵", x), collapse = "")
+  noskill <- paste0(rep("⚪", max - x), collapse = "")
+  out <- paste0(skill, noskill, collapse = "")
+  add_css_class(out, ".pbskill")
 }

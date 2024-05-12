@@ -13,7 +13,7 @@ format:
     template: files/template.html
     toc: true
     toc-title: Sections
-    embed-resources: true
+    embed-resources: false    
     output-file: index
     output-ext: html
 knitr:
@@ -40,10 +40,10 @@ if(!file.exists(here("files", "signature.png"))) download_sign()
 fg_scholar_id <- "f836QNAAAAAJ"
 fg_scholar <- get_profile(fg_scholar_id)
 scholar_data <- get_citation_history(fg_scholar_id)
-```
+```   
 
 :::{.pdf .no-print}
-Download the [PDF](index.pdf) version
+Download the {{< fa file-   pdf >}}  [PDF](index.pdf) version
 :::
 
 I am a **postdoctoral researcher** at the University of Padova, department of Developmental Psychology and Socialization (DPSS) and **licensed psychologist**. I am interested in meta-analysis, Monte Carlo simulations for power and design analysis and multiverse analysis.
@@ -58,6 +58,12 @@ research <- cv$research |>
   arrange(desc(order))
 
 research <- cv$research[cv$research$order == 1, ]
+research$details <- gsub("Supervisor:", "</br>**Supervisor:**", research$details)
+
+research$details <- gsub("Co-supervisor:", "</br>**Co-supervisor:**", research$details)
+
+research$details <- gsub("Project:", "**Project:**", research$details)
+
 for(i in 1:nrow(research)){
   make_entry(research$title[i], 
              research$date[i],
@@ -82,6 +88,7 @@ research <- cv$research |>
   arrange(desc(order))
 
 research <- cv$research[cv$research$order != 1, ]
+research$details <- gsub("Project:", "**Project:**", research$details)
 for(i in 1:nrow(research)){
   make_entry(research$title[i], 
              research$date[i],
@@ -99,6 +106,12 @@ for(i in 1:nrow(research)){
 
 education <- cv$main_education |> 
   arrange(order)
+education$details <- gsub("Supervisor:", "</br>**Supervisor:**", education$details)
+
+education$details <- gsub("Co-supervisor:", "</br>**Co-supervisor:**", education$details)
+
+education$details <- gsub("Project:", "**Project:**", education$details)
+
 for(i in 1:nrow(education)){
   make_entry(education$title[i], 
              education$date[i],
@@ -490,41 +503,43 @@ The CoLab, established at the Department of Developmental Psychology of the Univ
 
 ## Research Skills
 
-Rated as 1 (basic knowledge) to 5 (advanced knowledge).
+Rated as `r pb_skill(1)` (basic knowledge) to `r pb_skill(5)` (advanced knowledge).
 
 ### OS {.skills}
 
-- Linux (4), Windows (3), MacOS (3)
+- Linux `r pb_skill(4)`
+- Windows `r pb_skill(4)`
+- MacOS `r pb_skill(3)`
 
 ### Programming languages {.skills}
 
-- R (5)
-- MATLAB (3)
-- Python (3)
-- Javascript (2)
+- R `r pb_skill(5)`
+- MATLAB `r pb_skill(3)`
+- Python `r pb_skill(3)`
+- Javascript `r pb_skill(2)`
 
 ### Writing {.skills}
 
-- LaTeX (4)
-- HTML (3)
-- CSS (3)
-- Pandoc (3)
-- (R)Markdown (5)
-- Quarto (5)
+- LaTeX `r pb_skill(4)`
+- HTML `r pb_skill(3)`
+- CSS `r pb_skill(3)`
+- Pandoc `r pb_skill(3)`
+- (R)Markdown `r pb_skill(5)`
+- Quarto `r pb_skill(5)`
 
 ### Experiments {.skills}
 
-- Psychopy (5)
-- Eprime (3)
-- Presentation (4)
-- Psychtoolbox (3)
+- Psychopy `r pb_skill(5)`
+- Eprime `r pb_skill(3)`
+- Presentation `r pb_skill(4)`
+- Psychtoolbox `r pb_skill(3)`
 
 ### EEG/ERP {.skills}
 
-- EEGlab (3)
-- ERPlab (3)
-- Brainstorm (1)
-- Brainvision Analyzer (2)
+- EEGlab `r pb_skill(3)`
+- ERPlab `r pb_skill(3)`
+- Brainstorm `r pb_skill(1)`
+- Brainvision Analyzer `r pb_skill(2)`
 
 </br>
 </br>
