@@ -89,5 +89,7 @@ render_cv <- function(){
                             path = upload,
                             name = "cv-gambarota.pdf",
                             overwrite = TRUE)
-
+  system("git add .")
+  system("git commit -m 'updating'")
+  system("git push")
 }
