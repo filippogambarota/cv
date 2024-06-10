@@ -426,7 +426,7 @@ cv$conferences |>
 ```{r}
 #| results: asis
 cv$conferences |> 
-  arrange(desc(date)) |> 
+  arrange(desc(date), desc(month)) |> 
   filter(type == "Talk") |> 
   format_all(format_conf)
 ```
