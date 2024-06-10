@@ -153,16 +153,17 @@ for(i in 1:nrow(training)){
 
 ## Teaching
 
-### PhD
+[*[planned]* means that the course has been officially scheduled but not delivered yet]{.details}
 
-These courses are part of the PhD program in Psychological Sciences at the University of Padova.
+### PhD
 
 ```{r}
 #| results: asis
 #| echo: false
 phd <- cv$teaching |> 
   filter(type == "phd") |> 
-  group_nest(title, details, keep = TRUE)
+  group_nest(title, details, date, month, keep = TRUE) |> 
+  arrange(desc(date), desc(month))
 
 for(i in 1:nrow(phd)){
   format_teaching(phd$data[[i]])
@@ -441,6 +442,19 @@ cv$conferences |>
 cv$conferences |> 
   arrange(desc(date)) |> 
   filter(type == "Poster") |> 
+  format_all(format_conf)
+```
+
+### Symposia (`r nconf["Symposium"]`)
+
+[*[P]* means that I was the proponent]{.details}
+[*[accepted]* means that symposium has been accepted but has not taken place yet.]{.details}
+
+```{r}
+#| results: asis
+cv$conferences |> 
+  arrange(desc(date)) |> 
+  filter(type == "Symposium") |> 
   format_all(format_conf)
 ```
 
