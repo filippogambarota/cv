@@ -155,7 +155,7 @@ for(i in 1:nrow(training)){
 
 ### PhD
 
-These course are part of the PhD program in Psychological Sciences at the University of Padova.
+These courses are part of the PhD program in Psychological Sciences at the University of Padova.
 
 ```{r}
 #| results: asis
