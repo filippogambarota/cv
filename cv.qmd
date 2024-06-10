@@ -16,6 +16,8 @@ format:
     embed-resources: false    
     output-file: index
     output-ext: html
+bibliography: "https://raw.githubusercontent.com/filippogambarota/bib-database/main/references.bib" 
+csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
 knitr:
   opts_chunk:
     echo: false
