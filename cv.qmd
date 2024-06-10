@@ -421,7 +421,8 @@ cv$conferences |>
 
 ### Talks (`r nconf["Talk"]`)
 
-[*[P]* means that I was the presenting authors]{.details}
+[*[P]* means that I was the presenting author]{.details}
+[*[accepted]* means that the talk has been accepted but not delivered yet]{.details}
 
 ```{r}
 #| results: asis
