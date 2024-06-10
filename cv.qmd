@@ -46,7 +46,7 @@ scholar_data <- get_citation_history(fg_scholar_id)
 ```   
 
 :::{.pdf .no-print}
-Download the {{< fa file-   pdf >}}  [PDF](index.pdf) version
+Download the {{< fa file-pdf >}}  [PDF](cv.pdf) version
 :::
 
 I am a **postdoctoral researcher** at the University of Padova, department of Developmental Psychology and Socialization (DPSS) and **licensed psychologist**. I am interested in meta-analysis, Monte Carlo simulations for power and design analysis and multiverse analysis.
@@ -329,8 +329,12 @@ scholar_data |>
 #   gsub(pattern = "Gambarota", replacement = "**Gambarota**", x = _) |> 
 #   cat(sep = "\n")
 
+BibOptions(sorting = "ydnt")
 NoCite(bib)
-bib_print <- PrintBibliography(bib, .opts = list(bib.style = "authoryear", sorting = "ydnt", max.names = 100)) |> 
+bib_print <- PrintBibliography(bib, 
+                               .opts = list(bib.style = "authoryear", 
+                                            sorting = "ydnt", 
+                                            max.names = 100)) |> 
   capture.output() |> 
   gsub(pattern = "Gambarota", replacement = "**Gambarota**", x = _)
 
@@ -340,7 +344,8 @@ end <- c(end, length(bib_print))
 
 bib_list <- mapply(function(s, e) bib_print[s:e], start, end)
 bib_list <- lapply(bib_list, function(x) x[!grepl("^\\s*$", x)])
-bib_keys <- unname(names(bib))
+
+bib_keys <- names(sort(bib))
 
 for(i in 1:length(bib_list)){
   metr <- filter(cv$publication_metrics, key == bib_keys[i])

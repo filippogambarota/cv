@@ -77,7 +77,16 @@ add_css_class <- function(x, class){
 }
 
 render_cv <- function(){
-  quarto::quarto_render("cv.qmd", output_format = "html", output_file = "index.html",
+  options(googledrive_quiet = TRUE)
+  quarto::quarto_render("cv.qmd",
+                        output_format = "html",
+                        output_file = "index.html",
                         quiet = TRUE)
-  pagedown::chrome_print("index.html")
+  pagedown::chrome_print("index.html", output = "cv.pdf")
+  googledrive::drive_auth("filippo.gambarota@gmail.com")
+  upload <- googledrive::as_dribble(info()$drive_folder)
+  googledrive::drive_upload("cv.pdf",
+                            path = upload,
+                            name = "cv-gambarota.pdf",
+                            overwrite = TRUE)
 }
