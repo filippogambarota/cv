@@ -145,7 +145,8 @@ cv$awards |>
 training <- cv$training |> 
   arrange(desc(date))
 for(i in 1:nrow(training)){
-  make_entry(training$title[i], 
+  title <- sprintf("%s (%s)", training$title[i], training$duration[i])
+  make_entry(title, 
              training$date[i],
              training$place[i],
              training$details[i])
