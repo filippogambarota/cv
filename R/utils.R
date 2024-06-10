@@ -89,4 +89,5 @@ render_cv <- function(){
                             path = upload,
                             name = "cv-gambarota.pdf",
                             overwrite = TRUE)
+
 }

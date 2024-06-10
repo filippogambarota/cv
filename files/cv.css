@@ -91,6 +91,16 @@
   text-align: center;
 }
 
+h3::before {
+    content: '> ';
+}
+
+h2, .h2 {
+    /*border-bottom: 3px solid #dee2e6;*/
+    border-bottom: 3px solid #dee2e6;
+    padding-bottom: .5rem;
+}
+
 /* adapt stylesheet for print
 from: https://github.com/quarto-dev/quarto-cli/discussions/2538#discussioncomment-4081842 */
 

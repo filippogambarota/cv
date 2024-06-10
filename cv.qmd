@@ -240,8 +240,10 @@ cv$teaching |>
 
 ```{r}
 #| echo: false
-nmasters <- sum(cv$dissertations$degree == "Master's")
-nbachelors <- sum(cv$dissertations$degree != "Master's")
+
+supervision <- filter(cv$dissertations, finished == 1)
+nmasters <- sum(supervision$degree == "Master's")
+nbachelors <- sum(supervision$degree != "Master's")
 ```
 
 - I have co-supervised **`r nmasters` Master's degree** dissertations and **`r nbachelors` Bachelor's degree** dissertations (Department of Developmental Psychology and Socialization, University of Padova, Italy).
@@ -254,7 +256,7 @@ nbachelors <- sum(cv$dissertations$degree != "Master's")
 ## Dissertations
 
 ```{r}
-cv$dissertations |> 
+supervision |> 
   mutate(Student = paste(name, surname)) |>
   select(Student, title, date, degree, -name, -surname) |> 
   rename_with(.fn = str_to_title) |> 
