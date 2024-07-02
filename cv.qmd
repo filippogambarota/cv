@@ -16,6 +16,7 @@ format:
     embed-resources: false    
     output-file: index
     output-ext: html
+    link-external-newwindow: true
 bibliography: "https://raw.githubusercontent.com/filippogambarota/bib-database/main/references.bib" 
 csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
 knitr:
@@ -280,11 +281,11 @@ supervision |>
 
 ```{r}
 quartile <- table(cv$publication_metrics$Quartile)
-quartile <- sprintf("%s papers in %s journals", quartile, names(quartile))
+quartile <- sprintf("**%s %s in %s journals**", quartile, ifelse(quartile > 1, "papers", "paper"), names(quartile))
 quartile <- paste0(quartile, collapse = ", ")
 ```
 
-I published `r length(bib)` papers on journals with an average impact factor of `r mean(cv$publication_metrics$IF)`. In terms of quartiles, I published `r quartile`.
+I published **`r length(bib)` papers** on journals with an **average impact factor of `r mean(cv$publication_metrics$IF)`**. In terms of quartiles, I published `r quartile`.
 
 ```{r}
 npreprint <- nrow(cv$preprint)
@@ -294,13 +295,17 @@ nunderreview <- nrow(cv$under_review)
 
 #### Google Scholar
 
+[*Last Update: `r Sys.Date()`*]{.details}
+
 - H-index: **`r fg_scholar$h_index`**
 - Citations: **`r fg_scholar$total_cites`**
 
 #### Scopus
 
+[*Last Update: `r Sys.Date()`*]{.details}
+
 - H-index: **4**
-- Citations: **36**
+- Citations: **40**
 
 :::{.no-print}
 
