@@ -386,7 +386,7 @@ for(i in 1:nrow(cv$accepted_publications)){
     cv$accepted_publications$status[i]
   )
   cat(accepted)
-  cat("\n")
+  cat("\n\n")
 }
 ```
 
@@ -396,7 +396,7 @@ header <- sprintf("Under Review (%s)", nunderreview)
 pander::pandoc.header(header, 3)
 ```
 
-```{r include=nunderreview > 0}
+```{r include=nunderreview > 0, eval=nunderreview > 0}
 #| results: asis
 for(i in 1:nrow(cv$under_review)){
   preprint <- sprintf(
@@ -444,6 +444,7 @@ cv$conferences |>
 ### Posters (`r nconf["Poster"]`)
 
 [*[P]* means that I was the presenting authors]{.details}
+[*[accepted]* means that poster has been accepted but has not taken place yet]{.details}
 
 ```{r}
 #| results: asis
