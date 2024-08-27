@@ -304,8 +304,8 @@ nunderreview <- nrow(cv$under_review)
 
 [*Last Update: `r Sys.Date()`*]{.details}
 
-- H-index: **4**
-- Citations: **40**
+- H-index: **5**
+- Citations: **46**
 
 :::{.no-print}
 
