@@ -22,9 +22,6 @@ csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/ap
 knitr:
   opts_chunk:
     echo: false
-include-in-header:
-  - text: |
-      <link rel = "shortcut icon" href = "files/my-favicon.ico" />
 ---
 
 ```{r}
@@ -305,7 +302,7 @@ nunderreview <- nrow(cv$under_review)
 [*Last Update: `r Sys.Date()`*]{.details}
 
 - H-index: **5**
-- Citations: **46**
+- Citations: **50**
 
 :::{.no-print}
 

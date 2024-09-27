@@ -164,7 +164,7 @@ format_awards <- function(data){
           add_css_class(data$title, ".what"),
           data$details)
   )
-  cat("\n")
+  cat("\n\n")
 }
 
 format_all <- function(data, format_fun, ...){
