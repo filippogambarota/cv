@@ -3,7 +3,7 @@ name: "Filippo Gambarota"
 email: filippo.gambarota@unipd.it
 github: filippogambarota
 twitter: fgambarota
-date: last-modified
+date: today
 date-format: long
 orcid: "`r filor::fil()$orcid`"
 format: 
