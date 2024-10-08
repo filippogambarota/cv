@@ -510,10 +510,17 @@ for(i in 1:nrow(other)){
 #| echo: false
 
 terza_missione <- cv$terza_missione |> 
+  mutate(date = gsub("\\.0", "", date)) |> 
   arrange(desc(date))
 
 for(i in 1:nrow(terza_missione)){
-  details <- sprintf("%s **[Iris ID: %s]**", terza_missione$details[i], terza_missione$iris_id[i])
+  if(!is.na(terza_missione$iris_id[i])){
+    details <- sprintf("%s **[Iris ID: %s]**", 
+                       terza_missione$details[i], 
+                       terza_missione$iris_id[i])
+  }else{
+    details <- NA
+  }
   make_entry(terza_missione$title[i], 
              terza_missione$date[i],
              terza_missione$place[i],

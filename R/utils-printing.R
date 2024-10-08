@@ -11,6 +11,10 @@ format_edu <- function(data){
     }
 }
 
+format_terza_missione <- function(data){
+
+}
+
 format_social <- function(data, size){
     pattern <- "<a href='%s'> <i class='%s-%sx'></i></a>"
     sprintf(pattern, data$link, data$icon, size)
