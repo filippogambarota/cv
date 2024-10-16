@@ -101,6 +101,8 @@ for(i in 1:nrow(research)){
 }
 ```
 
+{{< pagebreak >}}
+
 ## Education
 
 ```{r}
@@ -124,6 +126,8 @@ for(i in 1:nrow(education)){
 }
 ```
 
+{{< pagebreak >}}
+
 ## Awards
 
 ```{r}
@@ -133,6 +137,8 @@ cv$awards |>
   arrange(desc(date)) |> 
   format_all(format_awards)
 ```
+
+{{< pagebreak >}}
 
 ## Training
 
@@ -151,6 +157,8 @@ for(i in 1:nrow(training)){
   cat("\n\n")
 }
 ```
+
+{{< pagebreak >}}
 
 ## Teaching
 
@@ -272,6 +280,8 @@ supervision |>
 
 :::
 
+{{< pagebreak >}}
+
 ## Publications
 
 [Journal impact factors and quartiles are taken from **Journal Citation Reports** considering the last available data]{.details}
@@ -307,6 +317,7 @@ nunderreview <- nrow(cv$under_review)
 :::{.no-print}
 
 ::: {.callout-note icon=false appearance="minimal" collapse=true}
+
 
 ## Citations Plot
 
@@ -357,7 +368,7 @@ bib_keys <- names(sort(bib))
 
 for(i in 1:length(bib_list)){
   metr <- filter(cv$publication_metrics, key == bib_keys[i])
-  cat(bib_list[[i]], "\n")
+  cat("1. ", bib_list[[i]], "\n")
   cat(sprintf("[IF: %s, Quartile: %s]", metr$IF[1], metr$Quartile[1]))
   cat("\n\n")
 }
@@ -408,6 +419,8 @@ for(i in 1:nrow(cv$under_review)){
   cat("\n")
 }
 ```
+
+{{< pagebreak >}}
 
 ## Conferences
 
@@ -464,6 +477,8 @@ cv$conferences |>
   format_all(format_conf)
 ```
 
+{{< pagebreak >}}
+
 ## Peer Reviews
 
 See my [Publons Profile](https://www.webofscience.com/wos/author/record/G-9799-2015)
@@ -476,6 +491,8 @@ Ad-hoc reviewer for:
 cat(sprintf("- %s", cv$reviews$journal), sep = "\n")
 ```
 
+{{< pagebreak >}}
+
 ## Professional Memberships
 
 ```{r}
@@ -484,6 +501,8 @@ cat(sprintf("- %s", cv$reviews$journal), sep = "\n")
 cv$memberships |> 
   format_all(format_memb)
 ```
+
+{{< pagebreak >}}
 
 ## Organization
 
@@ -502,6 +521,8 @@ for(i in 1:nrow(other)){
   cat("\n\n")
 }
 ```
+
+{{< pagebreak >}}
 
 ## Third Mission (Terza Missione)
 
@@ -529,6 +550,8 @@ for(i in 1:nrow(terza_missione)){
 }
 ```
 
+{{< pagebreak >}}
+
 ## Research Groups
 
 [2019 - ongoing]{.cvdate} [Psicostat - [psicostat.dpss.psy.unipd.it](https://psicostat.dpss.psy.unipd.it/)]{.what}
@@ -538,6 +561,8 @@ We are an interdisciplinary research group working in areas related to quantitat
 [2019 - ongoing]{.cvdate} [Colab [colab.psy.unipd.it](http://colab.psy.unipd.it/)]{.what}
 
 The CoLab, established at the Department of Developmental Psychology of the University of Padova in the 2000, hosts a variety of research projects, which focus primarily on exploring the functional and neural mechanisms subserving attention and language abilities in human adults.
+
+{{< pagebreak >}}
 
 ## Research Skills
 
@@ -583,5 +608,10 @@ Rated as `r pb_skill(1)` (basic knowledge) to `r pb_skill(5)` (advanced knowledg
 </br>
 
 :::{.print-only}
+
+[`r today()`]{.signaturedate}
+
+</br>
+
 ![](files/signature.png){.signature}
 :::

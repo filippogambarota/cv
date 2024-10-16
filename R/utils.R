@@ -6,6 +6,18 @@ get_online_cv <- function(){
   import_cv(file)
 }
 
+today <- function(){
+  date <- Sys.Date()
+  day <- as.numeric(format(date, "%d"))
+
+  # Determine the suffix for the day
+  suffix <- ifelse(day %% 10 == 1 & day != 11, "st",
+                   ifelse(day %% 10 == 2 & day != 12, "nd",
+                          ifelse(day %% 10 == 3 & day != 13, "rd", "th")))
+  paste0(format(date, "%d"), suffix, " ", format(date, "%B %Y"))
+}
+
+
 clean_cv_data <- function(data){
     data %>%
         mutate(across(where(is.character), ~str_remove_all(.x, "\\.0")))
