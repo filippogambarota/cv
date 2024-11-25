@@ -16,6 +16,7 @@
 
 .signaturedate{
   float: right;
+  font-style: italic;
 }
 
 .details ul {
@@ -42,6 +43,10 @@
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.phd {
+  font-size: 70%;
 }
 
 .details {

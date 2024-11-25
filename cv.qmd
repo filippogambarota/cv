@@ -1,10 +1,11 @@
 ---
-name: "Filippo Gambarota"
+name: "Filippo Gambarota, <span class='phd'>PhD</span>"
 email: filippo.gambarota@unipd.it
 github: filippogambarota
 twitter: fgambarota
 date: today
 date-format: long
+birth: "Camposampiero (PD, Italy) 22<sup>nd</sup> July 1994"
 orcid: "`r filor::fil()$orcid`"
 format: 
   html:
@@ -49,7 +50,14 @@ scholar_data <- get_citation_history(fg_scholar_id)
 Download the {{< fa file-pdf >}}  [PDF](cv.pdf) version
 :::
 
-I am a **postdoctoral researcher** at the University of Padova, Department of Developmental Psychology and Socialization (DPSS) and **licensed psychologist**. I am interested in meta-analysis, Monte Carlo simulations for power and design analysis and multiverse analysis.
+I am a **postdoctoral researcher** in Psychometrics (SSD: PSIC-01/C, ex M-PSI/03) at the University of Padova, Department of Developmental Psychology and Socialization (DPSS) and **licensed clinical psychologist**. 
+
+**Research interests**:
+
+- meta-analysis
+- Monte Carlo simulations for power and design analysis
+- multiverse analysis
+- statistical methods for replicability assessment
 
 ## Current position
 
@@ -79,7 +87,7 @@ for(i in 1:nrow(research)){
 ## Academic roles
 
 [2023 - ongoing]{.cvdate} 
-[Expert (Cultore della Materia) of Psychometrics (M-PSI/03)]{.what} </br> *[Department of Developmental Psychology and Socialization, University of Padova, Italy]{.where}*
+[Expert (Cultore della Materia) of Psychometrics (PSIC-01/C ex M-PSI/03)]{.what} </br> *[Department of Developmental Psychology and Socialization, University of Padova, Italy]{.where}*
 
 ## Research
 
@@ -100,6 +108,29 @@ for(i in 1:nrow(research)){
   cat("\n\n")
 }
 ```
+
+{{< pagebreak >}}
+
+## Abroad
+
+```{r}
+#| results: asis
+#| echo: false
+abroad <- cv$abroad |> 
+  arrange(desc(date))
+abroad$title <- sprintf("%s (%s)", abroad$title, abroad$duration)
+abroad$details <- put_before(abroad$details, "Supervisor", "</br>")
+abroad$details <- bold_pattern(abroad$details, "Supervisor")
+
+for(i in 1:nrow(abroad)){
+  make_entry(abroad$title[i],
+           abroad$date[i],
+           abroad$place[i],
+           abroad$details[i])
+  cat("\n\n")
+}
+```
+
 
 {{< pagebreak >}}
 
@@ -387,7 +418,7 @@ pander::pandoc.header(header, 3)
 #| results: asis
 for(i in 1:nrow(cv$accepted_publications)){
   accepted <- sprintf(
-    "%s - %s - *%s* [%s]",
+    "- %s - %s - *%s* [%s]",
     bold_my_name(cv$accepted_publications$authors[i]),
     cv$accepted_publications$title[i],
     cv$accepted_publications$journal[i],
@@ -564,6 +595,21 @@ The CoLab, established at the Department of Developmental Psychology of the Univ
 
 {{< pagebreak >}}
 
+## Software
+
+I mainly use R and the majority of research works are bounded with an R package, Shiny application or R code. The code and unpublished packages can be found on Github:
+
+- [filippogambarota](https://github.com/filippogambarota): main personal repository
+- [shared-research](https://github.com/shared-research): collection of papers with code and or packages
+- [stat-teaching](https://github.com/stat-teaching): collection of teaching materials
+- [psicostat](https://github.com/psicostat): repository of the Psicostat research group
+
+### R Packages on CRAN
+
+- [trackdown](https://github.com/ClaudioZandonella/trackdown): I have co-authored an R package to collaborate on R Markdown and QUARTO documents. [[CRAN]](https://cran.r-project.org/web/packages/trackdown/index.html)
+
+{{< pagebreak >}}
+
 ## Research Skills
 
 Rated as `r pb_skill(1)` (basic knowledge) to `r pb_skill(5)` (advanced knowledge).
@@ -578,7 +624,7 @@ Rated as `r pb_skill(1)` (basic knowledge) to `r pb_skill(5)` (advanced knowledg
 
 - R `r pb_skill(5)`
 - MATLAB `r pb_skill(3)`
-- Python `r pb_skill(3)`
+- Python `r pb_skill(4)`
 - Javascript `r pb_skill(2)`
 
 ### Writing {.skills}
@@ -609,7 +655,7 @@ Rated as `r pb_skill(1)` (basic knowledge) to `r pb_skill(5)` (advanced knowledg
 
 :::{.print-only}
 
-[`r today()`]{.signaturedate}
+[`r today("html")`]{.signaturedate}
 
 </br>
 

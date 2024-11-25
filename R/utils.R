@@ -6,7 +6,7 @@ get_online_cv <- function(){
   import_cv(file)
 }
 
-today <- function(){
+today <- function(to = "plain"){
   date <- Sys.Date()
   day <- as.numeric(format(date, "%d"))
 
@@ -14,6 +14,9 @@ today <- function(){
   suffix <- ifelse(day %% 10 == 1 & day != 11, "st",
                    ifelse(day %% 10 == 2 & day != 12, "nd",
                           ifelse(day %% 10 == 3 & day != 13, "rd", "th")))
+  if(to == "html"){
+    suffix <- sprintf("<sup>%s</sup>", suffix)
+  }
   paste0(format(date, "%d"), suffix, " ", format(date, "%B %Y"))
 }
 
@@ -104,4 +107,13 @@ render_cv <- function(){
   system("git add .")
   system("git commit -m 'updating'")
   system("git push")
+}
+
+put_before <- function(x, where, what){
+  subb <- paste(what, where)
+  gsub(where, subb, x)
+}
+
+bold_pattern <- function(x, pattern){
+  gsub(pattern, bold(pattern), x)
 }
