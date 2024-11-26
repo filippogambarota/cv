@@ -1,0 +1,27 @@
+Del Popolo Cristaldi, F., Buodo, G., Gambarota, F., Oosterwijk, S., & Mento, G. (2024). How previous experience shapes future affective subjective ratings: A follow-up study investigating implicit learning and cue ambiguity. PloS One, 19(2), e0297954. https://doi.org/10.1371/journal.pone.0297954
+
+Del Popolo Cristaldi, F., Gambarota, F., & Oosterwijk, S. (2023). Does your past define you? The role of previous visual experience in subjective reactions to new affective pictures and sounds. Emotion, 23(5), 1317–1333. https://doi.org/10.1037/emo0001168
+
+Di Rosa, E., Masina, F., Pastorino, A., Galletti, E., Gambarota, F., Altoè, G., Edelstyn, N., & Mapelli, D. (2024). Mood moderates the effects of prefrontal tDCS on executive functions: A meta-analysis testing the affective state-dependency hypothesis. Journal of Affective Disorders, 351, 920–930. https://doi.org/10.1016/j.jad.2024.02.009
+
+Gambarota, F., & Altoè, G. (2024a). Understanding meta-analysis through data simulation with applications to power analysis. Advances in Methods and Practices in Psychological Science, 7(1). https://doi.org/10.1177/25152459231209330
+
+Gambarota, F., & Altoè, G. (2024b). Ordinal regression models made easy: A tutorial on parameter interpretation, data simulation and power analysis. International Journal of Psychology. https://doi.org/10.1002/ijop.13243
+
+Gambarota, F., & Sessa, P. (2019). Visual working memory for faces and facial expressions as a useful “tool” for understanding social and affective cognition. Frontiers in Psychology, 10(OCT), 2392. https://doi.org/10.3389/fpsyg.2019.02392
+
+Gambarota, F., Tsuchiya, N., Pastore, M., Di Polito, N., & Sessa, P. (2022). Unconscious Visual Working Memory: A critical review and Bayesian meta-analysis. Neuroscience and Biobehavioral Reviews, 136(104618), 104618. https://doi.org/10.1016/j.neubiorev.2022.104618
+
+Maffei, A., Gambarota, F., Liotti, M., Dell’Acqua, R., Tsuchiya, N., & Sessa, P. (2024). Conscious perception of fear in faces: Insights from high-density EEG and perceptual awareness scale with threshold stimuli. Cortex; a Journal Devoted to the Study of the Nervous System and Behavior, 174, 93–109. https://doi.org/10.1016/j.cortex.2024.02.010
+
+Montuori, C., Gambarota, F., Altoé, G., & Arfé, B. (2023). The cognitive effects of computational thinking: A systematic review and meta-analytic study. Computers & Education, 210(104961), 104961. https://doi.org/10.1016/j.compedu.2023.104961
+
+Pezzetta, R., Gambarota, F., Tarantino, V., Devita, M., Cattaneo, Z., Arcara, G., Mapelli, D., & Masina, F. (2024). A meta-analysis of non-invasive brain stimulation (NIBS) effects on cerebellar-associated cognitive processes. Neuroscience and Biobehavioral Reviews, 157(105509), 105509. https://doi.org/10.1016/j.neubiorev.2023.105509
+
+Quettier, T., Gambarota, F., Tsuchiya, N., & Sessa, P. (2021). Blocking facial mimicry during binocular rivalry modulates visual awareness of faces with a neutral expression. Scientific Reports, 11(1), 9972. https://doi.org/10.1038/s41598-021-89355-5
+
+Quettier, T., Maffei, A., Gambarota, F., Ferrari, P. F., & Sessa, P. (2023). Testing EEG functional connectivity between sensorimotor and face processing visual regions in individuals with congenital facial palsy. Frontiers in Systems Neuroscience, 17, 1123221. https://doi.org/10.3389/fnsys.2023.1123221
+
+Toffalini, E., Gambarota, F., Perugini, A., Girardi, P., Tobia, V., Altoè, G., Giofrè, D., Psicostat Core Team, & Feraco, T. (2024). Clusters that are not there: An R tutorial and a Shiny app to quantify a priori inferential risks when using clustering methods. International Journal of Psychology. https://doi.org/10.1002/ijop.13246
+
+Verroca, A., de Rienzo, C. M., Gambarota, F., & Sessa, P. (2022). Mapping the perception-space of facial expressions in the era of face masks. Frontiers in Psychology, 13, 956832. https://doi.org/10.3389/fpsyg.2022.956832

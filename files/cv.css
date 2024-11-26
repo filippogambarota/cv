@@ -160,6 +160,7 @@ from: https://github.com/quarto-dev/quarto-cli/discussions/2538#discussioncommen
     font-weight: 900;
     font-size: 100%;
     text-transform: uppercase;
+    /* page-break-before: always; */
     /* color: blueviolet; */
   }
 

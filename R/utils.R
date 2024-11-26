@@ -44,6 +44,11 @@ import_cv <- function(cv){
 get_publications <- function(){
   bib <- "files/ref.bib"
   download.file(info()$bib, destfile = "files/ref.bib", quiet = TRUE)
+  bibl <- readLines(bib)
+  bibl_temp <- bibl
+  bibl_temp <- gsub("Gambarota", "Gambarota", bibl_temp)
+  bibl_temp[grepl("^@", bibl_temp)] <- bibl[grepl("^@", bibl)]
+  writeLines(bibl_temp, bib)
   RefManageR::ReadBib(bib)
 }
 
@@ -116,4 +121,42 @@ put_before <- function(x, where, what){
 
 bold_pattern <- function(x, pattern){
   gsub(pattern, bold(pattern), x)
+}
+
+wrap_text <- function(text, width) {
+    words <- strsplit(text, "\\s+")[[1]]  # Split text into words
+    line_length <- 0
+    wrapped_text <- character()
+
+    for (word in words) {
+      if (line_length + nchar(word) <= width) {
+        wrapped_text <- paste0(wrapped_text, word, " ")
+        line_length <- line_length + nchar(word) + 1
+      } else {
+        wrapped_text <- paste0(wrapped_text, " <br> ", word, " ")
+        line_length <- nchar(word) + 1
+      }
+    }
+
+  return(wrapped_text)
+}
+
+get_first_name <- function(x){
+  strsplit(x, ",")[[1]][[1]]
+}
+
+clean_for_name <- function(x){
+  x |>
+    gsub("-", "_", x = _) |>
+    gsub(":", "", x = _) |>
+    gsub(";", "", x = _) |>
+    gsub("\\s", "", x = _) |>
+    gsub("\\(", "", x = _) |>
+    gsub("\\)", "", x = _) |>
+    gsub(",", "", x = _)
+}
+
+get_bib_keys <- function(x){
+  keys <- x[grepl("^@", x)]
+  stringr::str_extract(keys, "(?<=@ARTICLE\\{)[^,]+")
 }

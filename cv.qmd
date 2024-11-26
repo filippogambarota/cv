@@ -7,6 +7,15 @@ date: today
 date-format: long
 birth: "Camposampiero (PD, Italy) 22<sup>nd</sup> July 1994"
 orcid: "`r filor::fil()$orcid`"
+bibliography: "files/ref.bib"
+filters:
+  - files/dociteproc.lua
+  - files/boldname.lua
+citeproc: false
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+csl: "files/apa-cv.csl"
 format: 
   html:
     page-layout: article
@@ -18,8 +27,6 @@ format:
     output-file: index
     output-ext: html
     link-external-newwindow: true
-bibliography: "https://raw.githubusercontent.com/filippogambarota/bib-database/main/references.bib" 
-csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
 knitr:
   opts_chunk:
     echo: false
@@ -40,24 +47,126 @@ devtools::load_all()
 drive_auth("filippo.gambarota@gmail.com")
 cv <- get_online_cv()
 bib <- get_publications()
+BibOptions(sorting = "ydnt")
+NoCite(bib)
 if(!file.exists(here("files", "signature.png"))) download_sign()
 fg_scholar_id <- "f836QNAAAAAJ"
 fg_scholar <- get_profile(fg_scholar_id)
 scholar_data <- get_citation_history(fg_scholar_id)
-```   
+fg_scholar_pubs <- scholar::get_publications(fg_scholar_id)
+```
+
+```{r}
+#| label: toapa
+#| include: false
+
+conf_apa <- sprintf("%s (%s). *%s*. %s. %s.", 
+        cv$conferences$authors,
+        cv$conferences$date,
+        cv$conferences$title,
+        cv$conferences$conference,
+        cv$conferences$place) |> 
+  bold_my_name() |> 
+  gsub("\\.\\.", "\\.", x = _) |>
+  as.list()
+
+nn <- sprintf("%s_%s_%s",
+        unname(sapply(cv$conferences$authors, get_first_name)),
+        cv$conferences$date,
+        sapply(cv$conferences$conference, function(x) gsub(" ", "_", paste0(x, collapse = "_"))))
+
+names(conf_apa) <- clean_for_name(nn)
+```
+
+
+```{r}
+#| label: network
+#| include: false
+
+# thanks to https://eiko-fried.com/create-your-collaborator-network-in-r/
+
+library("qgraph")
+library("dplyr")
+
+# pp <- PrintBibliography(bib, 
+#                   .opts = list(bib.style = "authoryear", 
+#                                sorting = "ydnt", 
+#                                max.names = 100)) |> 
+#   capture.output()
+# 
+# end <- c(grep("^\\s*$", pp))
+# start <- c(1, end + 1)
+# end <- c(end, length(pp))
+# 
+# pp <- mapply(function(s, e) pp[s:e], start, end)
+# pp <- lapply(pp, function(x) paste(x, collapse = ""))
+# pp <- unlist(pp)
+# writeLines(pp, "files/mypubs.txt")
+
+# Load references:  
+refs <- readLines("files/mypubs.txt")
+
+authors <- refs %>% 
+  # First remove everything from date onwards:
+  gsub("\\(.*","",.) %>% 
+  # Remove asterix:
+  gsub("\\*","",.) %>%
+  # Make lowercase:
+  tolower %>%
+  # Remove spaces:
+  gsub("\\s*","",.) %>%
+  # Remove &
+  gsub("\\&","",.) %>%
+  # Split on .,:
+  strsplit(split="(?<=\\.),",perl=TRUE) %>%
+  # Remove periods and everything following:
+  lapply(function(x)gsub("\\..*","",x))
+
+# Collect unique authors:
+allAuthors <- unique(unlist(authors))
+
+# Create list 
+SymXDis <- do.call(cbind,lapply(authors,function(x){
+  1*(allAuthors %in% x)
+}))
+
+# Make adjacency:
+adj <- SymXDis %*% t(SymXDis)
+
+# Labels:
+labs <- gsub(",.*","",allAuthors)
+substr(labs,0,1) <- toupper(substr(labs,0,1))
+
+# Plot:
+sha <- ifelse(allAuthors == "gambarota,f","square", "circle")
+names<-c(1:71)
+
+# pdf("1network_full_numbers.pdf", width=6, height=4.5)
+# qgraph(adj, labels = names, nodeNames = labs, color = "#eeeeee",  shape=sha, vsize = 4, diag = FALSE,
+#        layout = "spring", edge.color = "#666666", repulsion = 0.90, 
+#        border.width=2, border.color='#444444', label.color="#555555", legend.cex=.15)
+# dev.off()
+
+#pdf("2network_full_names.pdf")
+# qgraph(adj, labels = labs,color = "#eeeeee",  vsize = 5, diag = FALSE, shape=sha,
+#        layout = "spring", edge.color = "#666666", repulsion = 0.90, 
+#        border.width=2, border.color='#444444', label.color="#555555")
+#dev.off()
+```
+
 
 :::{.pdf .no-print}
 Download the {{< fa file-pdf >}}  [PDF](cv.pdf) version
 :::
 
-I am a **postdoctoral researcher** in Psychometrics (SSD: PSIC-01/C, ex M-PSI/03) at the University of Padova, Department of Developmental Psychology and Socialization (DPSS) and **licensed clinical psychologist**. 
+I am a **postdoctoral researcher** in Psychometrics (SSD: PSIC-01/C, ex M-PSI/03) at the University of Padova, Department of Developmental Psychology and Socialization (DPSS) and **licensed clinical psychologist**.
 
 **Research interests**:
 
-- meta-analysis
+- Meta-analysis
 - Monte Carlo simulations for power and design analysis
-- multiverse analysis
-- statistical methods for replicability assessment
+- Multiverse analysis
+- Statistical methods for replicability assessment
 
 ## Current position
 
@@ -217,6 +326,9 @@ for(i in 1:nrow(phd)){
 #| echo: false
 cfu <- cv$teaching |> 
   filter(type == "cfu") |> 
+  mutate(title = ifelse(nchar(title) > 67,
+                        wrap_text(title, 37),
+                        title)) |> 
   group_nest(title, details, keep = TRUE)
 
 for(i in 1:nrow(cfu)){
@@ -319,7 +431,11 @@ supervision |>
 
 ```{r}
 quartile <- table(cv$publication_metrics$Quartile)
-quartile <- sprintf("**%s %s in %s journals**", quartile, ifelse(quartile > 1, "papers", "paper"), names(quartile))
+quartile <- sprintf("**%s %s in %s journals (%s%%)**", 
+                    quartile, 
+                    ifelse(quartile > 1, "papers", "paper"),
+                    names(quartile),
+                    round((quartile / sum(quartile)) * 100, 2))
 quartile <- paste0(quartile, collapse = ", ")
 ```
 
@@ -331,26 +447,37 @@ naccepted <- nrow(cv$accepted_publications)
 nunderreview <- nrow(cv$under_review)
 ```
 
-#### Google Scholar
+#### Google Scholar <sup>+</sup>
 
-[*Last Update: `r Sys.Date()`*]{.details}
+[*Last Update: `r Sys.Date()`* </br> <sup>+</sup> *contains preprints, conference proceedings and redundant articles*]{.details}
 
 - H-index: **`r fg_scholar$h_index`**
 - Citations: **`r fg_scholar$total_cites`**
+- Number of articles: **`r nrow(fg_scholar_pubs)`** 
 
-#### Scopus
+```{r}
+#| results: asis
+date <- sprintf("[*Last Update: %s*]{.details}", cv$metrics$updated)
+h <- sprintf("- H-index: **%s**", cv$metrics$h)
+cit <- sprintf("- Citations: **%s**", cv$metrics$citations)
+art <- sprintf("- Number of articles: **%s**", cv$metrics$articles)
 
-[*Last Update: `r Sys.Date()`*]{.details}
+for(i in 1:nrow(cv$metrics)){
+  cat("####", cv$metrics$service[i], "\n\n")
+  cat(date[i], "\n\n")
+  cat(h[i], "\n")
+  cat(cit[i], "\n")
+  cat(art[i], "\n\n")
+}
+```
 
-- H-index: **5**
-- Citations: **50**
 
 :::{.no-print}
 
 ::: {.callout-note icon=false appearance="minimal" collapse=true}
 
 
-## Citations Plot
+## Citations Plot (Google Scholar)
 
 ```{r}
 #| echo: false
@@ -362,6 +489,24 @@ scholar_data |>
   ylab("# Citations") +
   theme_minimal(15)
 ```
+
+:::
+
+::: {.callout-note icon=false appearance="minimal" collapse=true}
+
+
+## Co-authors network
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 10
+#| fig-dpi: 300
+qgraph(adj, labels = labs,color = "#eeeeee",  vsize = 5, diag = FALSE, shape=sha,
+       layout = "spring", edge.color = "#666666", repulsion = 0.90, 
+       border.width=2, border.color='#444444', label.color="#555555")
+```
+
 :::
 
 :::
@@ -371,7 +516,7 @@ scholar_data |>
 ```{r}
 #| results: asis
 #| echo: false
-#| eval: true
+#| eval: false
 
 # NoCite(bib)
 # PrintBibliography(bib, .opts = list(bib.style = "authoryear", sorting = "ydnt", max.names = 100)) |> 
@@ -379,8 +524,6 @@ scholar_data |>
 #   gsub(pattern = "Gambarota", replacement = "**Gambarota**", x = _) |> 
 #   cat(sep = "\n")
 
-BibOptions(sorting = "ydnt")
-NoCite(bib)
 bib_print <- PrintBibliography(bib, 
                                .opts = list(bib.style = "authoryear", 
                                             sorting = "ydnt", 
@@ -396,6 +539,7 @@ bib_list <- mapply(function(s, e) bib_print[s:e], start, end)
 bib_list <- lapply(bib_list, function(x) x[!grepl("^\\s*$", x)])
 
 bib_keys <- names(sort(bib))
+names(bib_list) <- clean_for_name(bib_keys)
 
 for(i in 1:length(bib_list)){
   metr <- filter(cv$publication_metrics, key == bib_keys[i])
@@ -407,6 +551,19 @@ for(i in 1:length(bib_list)){
 
 <!-- :::{#refs} -->
 <!-- ::: -->
+
+```{r}
+#| results: asis
+keys <- names(sort(bib))
+metr <- cv$publication_metrics[match(keys, cv$publication_metrics$key), ]
+citations <- sprintf("1. @%s </br> *[IF: %s, Quartile: %s]*",
+        metr$key,
+        metr$IF,
+        metr$Quartile)
+
+cat(citations, sep = "\n\n")
+```
+
 
 ```{r include=naccepted > 0}
 #| results: asis
@@ -512,7 +669,9 @@ cv$conferences |>
 
 ## Peer Reviews
 
+:::{.no-print}
 See my [Publons Profile](https://www.webofscience.com/wos/author/record/G-9799-2015)
+:::
 
 Ad-hoc reviewer for:
 
@@ -583,15 +742,75 @@ for(i in 1:nrow(terza_missione)){
 
 {{< pagebreak >}}
 
-## Research Groups
+## Research groups membership
 
 [2019 - ongoing]{.cvdate} [Psicostat - [psicostat.dpss.psy.unipd.it](https://psicostat.dpss.psy.unipd.it/)]{.what}
 
-We are an interdisciplinary research group working in areas related to quantitative psychology, psychometrics, psychological testing and statistics.
+I am part of the [core team](https://psicostat.dpss.psy.unipd.it/people.html) of Psicostat founded by professors Massimiliano Pastore, Gianmarco Altoè and Livio Finos. We are an interdisciplinary research group working in areas related to quantitative psychology, psychometrics, psychological testing and statistics.
 
 [2019 - ongoing]{.cvdate} [Colab [colab.psy.unipd.it](http://colab.psy.unipd.it/)]{.what}
 
 The CoLab, established at the Department of Developmental Psychology of the University of Padova in the 2000, hosts a variety of research projects, which focus primarily on exploring the functional and neural mechanisms subserving attention and language abilities in human adults.
+
+## Collaborations
+
+A selection of collaborations with scholars outside the School of Psychology (University of Padova)
+
+```{r}
+#| results: asis
+coll <- cv$collaborations
+coll$date <- sprintf("%s - ongoing", coll$date)
+coll <- arrange(coll, desc(date))
+
+for(i in 1:nrow(coll)){
+  make_entry(
+    coll$name[i],
+    coll$date[i],
+    coll$affiliation[i],
+    coll$details[i]
+  ) |> 
+    cat("\n\n")
+}
+```
+
+## Group research activities
+
+[2023 - ongoing]{.cvdate}[Research group on Multiverse analysis in generalized linear models and meta-analysis]{.what}
+
+Member of a national research group about inference in multiverse for GLM and meta-analysis with Gianmarco Altoè (University of Padova), Anna Vesely (University of Bologna) and Livio Finos (University of Padova), Massimiliano Pastore (University of Padova), Paolo Girardi (Ca' Foscari University of Venice). The research group produced the following conference presentations and posters:
+
+:::{.smaller}
+
+- `r conf_apa$Gambarota_2024_META_REP`
+- `r conf_apa$Girardi_2024_Association_for_Applied_Statistics_ASA`
+- `r conf_apa$Gambarota_2024_La_Psicometria_tra_Oggi_e_Domani_Sfide_E_Nuovi_Orizzonti`
+- `r conf_apa$Gambarota_2023_Society_for_the_Improvement_of_Psychological_Science_SIPS`
+
+:::
+
+[2023 - ongoing]{.cvdate}[Research group working on tutorials about statistical methods in Psychology]{.what}
+
+Member of a research group with the aim of writing tutorial for common and widely used statistical methods in Psychology. Main group members are Gianmarco Altoè (University of Padova), Enrico Toffalini (University of Padova) and other members from the Psicostat research group. We produced the following papers:
+
+:::{.smaller}
+
+- @Gambarota2024-cn
+- @Gambarota2024-lp
+- @Toffalini2024-vp
+
+:::
+
+[2019 - ongoing]{.cvdate}[Research group on visual consciousness and visual working memory]{.what}
+
+Member of an international research group about visual consciousness for emotions and the relationship between visual working memory and consciousness. The principal investigators are Paola Sessa (University of Padova) and Naotsugu Tsuchiya (Monash University, Australia; [tLab](https://sites.google.com/monash.edu/tlab/people) research group). Other members of the research group are: Antonio Maffei (University of Padova), Roy Luria (University of Tel Aviv, Israel), Roberto Dell'Acqua (University of Padova), Thomas Quettier (University of Bologna). The collaboration produced the following publications:
+
+:::{.smaller}
+
+- @Maffei2024-qw
+- @Quettier2023-yx
+- @Gambarota2022-kr
+
+:::
 
 {{< pagebreak >}}
 
@@ -607,8 +826,6 @@ I mainly use R and the majority of research works are bounded with an R package,
 ### R Packages on CRAN
 
 - [trackdown](https://github.com/ClaudioZandonella/trackdown): I have co-authored an R package to collaborate on R Markdown and QUARTO documents. [[CRAN]](https://cran.r-project.org/web/packages/trackdown/index.html)
-
-{{< pagebreak >}}
 
 ## Research Skills
 
@@ -660,4 +877,7 @@ Rated as `r pb_skill(1)` (basic knowledge) to `r pb_skill(5)` (advanced knowledg
 </br>
 
 ![](files/signature.png){.signature}
+:::
+
+::: {#refs}
 :::
