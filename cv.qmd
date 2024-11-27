@@ -439,7 +439,7 @@ quartile <- sprintf("**%s %s in %s journals (%s%%)**",
 quartile <- paste0(quartile, collapse = ", ")
 ```
 
-I published **`r length(bib)` papers** on journals with an **average impact factor of `r mean(cv$publication_metrics$IF)`**. In terms of quartiles, I published `r quartile`.
+I published **`r length(bib)` papers** on journals with an **average impact factor of `r round(mean(cv$publication_metrics$IF), 1)`**. In terms of quartiles, I published `r quartile`.
 
 ```{r}
 npreprint <- nrow(cv$preprint)
