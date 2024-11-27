@@ -29,6 +29,12 @@
   gap: 1px;
 }
 
+.det {
+  margin-left: 50;
+  margin-top: -10px;
+  font-size: 12px;
+}
+
 .date {
   text-align: center;
   margin-top: 20px;
@@ -41,12 +47,11 @@
 }
 
 .improfile {
+  margin-top: -20px;
+  margin-right: 50px;
   width: 20%;
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  border-radius: 50%;
+  float: right;
 }
 
 .phd {

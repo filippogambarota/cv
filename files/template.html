@@ -41,20 +41,39 @@ $if(name)$
 <header id="title-block-header">
 <h1 class="title">$name$</h1>
 
-<img class="improfile" src="files/profile.jpg"/>
-
 $if(subtitle)$
 <p class="subtitle">$subtitle$</p>
 $endif$
 
-<center>
-<p class="smaller">
-<i class="fa fa-envelope"></i> <a href="mailto:$email$">$email$</a> |
-<i class="fa-brands fa-github"></i> <a href="https://github.com/$github$">$github$</a> |
-<i class="fa-brands fa-orcid"></i> <a href="https://orcid.org/$orcid$">$orcid$</a> |
-<i class="fa-brands fa-twitter"></i> <a href="https://x.com/$twitter$">$twitter$</a>
+</br>
+</br>
+</br>
+
+<div class="container">
+      <div class="image">
+        <img class="improfile" src="files/profile.jpg">
+      </div>
+      <div>
+<p class="det">
+  <i class="fa fa-envelope"></i> <a href="mailto:$email$">$email$</a>
 </p>
-</center>
+<p class="det">
+  <i class="fa-brands fa-github"></i> <a href="https://github.com/$github$">$github$</a>
+</p>
+<p class="det">
+  <i class="fa-brands fa-orcid"></i> <a href="https://orcid.org/$orcid$">$orcid$</a>
+</p>
+<p class="det">
+  <i class="fa-brands fa-twitter"></i> <a href="https://x.com/$twitter$">$twitter$</a>
+</p>
+
+      </div>
+</div>
+
+</br>
+</br>
+
+
 $for(author)$
 <p class="author">$author$</p>
 $endfor$

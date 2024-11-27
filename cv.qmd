@@ -157,6 +157,8 @@ names<-c(1:71)
 
 :::{.pdf .no-print}
 Download the {{< fa file-pdf >}}  [PDF](cv.pdf) version
+</br>
+</br>
 :::
 
 I am a **postdoctoral researcher** in Psychometrics (SSD: PSIC-01/C, ex M-PSI/03) at the University of Padova, Department of Developmental Psychology and Socialization (DPSS) and **licensed clinical psychologist**.

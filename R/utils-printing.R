@@ -69,9 +69,9 @@ format_teaching <- function(data){
     title <- unique(data$title)
     details <- ifelse(!is.na(data$details),
                       ifelse(!is.na(data$materials),
-                             sprintf("%s [[Materials](%s)]", data$details, data$materials),
+                             sprintf("%s </br> [%s](%s)", data$details, icon_from_file(data$materials), data$materials),
                              data$details),
-                      sprintf("[[Materials](%s)]", data$details, data$materials))
+                      sprintf("</br> [%s](%s)", icon_from_file(data$materials), data$materials))
     details <- unique(details)
     date <- sort(data$date)
     if(tail(date, 1) < format(Sys.Date(), format = "%Y")){
@@ -95,13 +95,13 @@ format_teaching <- function(data){
 
     if(!is.na(data$details)){
       if(!is.na(data$materials)){
-        details <- sprintf("%s [[Materials](%s)]", data$details, data$materials)
+        details <- sprintf("%s <br/> [%s](%s)", data$details, icon_from_file(data$materials), data$materials)
       }else{
         details <- data$details
       }
     }else{
       if(!is.na(data$materials)){
-        details <- sprintf("[[Materials](%s)]", data$details, data$materials)
+        details <- sprintf("<br/> [%s](%s)", icon_from_file(data$materials), data$materials)
       }
     }
     details_events <- NA
@@ -127,16 +127,19 @@ format_conf <- function(data){
                     authors)
 
   video <- ifelse(!is.na(data$link_talk),
-                  sprintf("[[Video](%s)]", data$link_talk),
+                  sprintf("[{{< fa video >}}](%s)", data$link_talk),
                   NA)
+  # materials <- ifelse(!is.na(data$link_materials),
+  #                     sprintf("[[%s](%s)]", data$type_material, data$link_materials),
+  #                     NA)
   materials <- ifelse(!is.na(data$link_materials),
-                      sprintf("[[%s](%s)]", data$type_material, data$link_materials),
+                      sprintf("[%s](%s)", icon_from_file(data$link_materials), data$link_materials),
                       NA)
   video_materials <- c(video, materials)
   video_materials <- video_materials[!is.na(video_materials)]
   if(length(video_materials) > 0){
-    video_materials <- paste(video_materials, collapse = ", ")
-    data$title <- sprintf("%s - %s",
+    video_materials <- paste(video_materials, collapse = " ")
+    data$title <- sprintf("%s </br> %s",
                                data$title,
                                video_materials)
   }else{

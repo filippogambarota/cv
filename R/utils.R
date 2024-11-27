@@ -160,3 +160,12 @@ get_bib_keys <- function(x){
   keys <- x[grepl("^@", x)]
   stringr::str_extract(keys, "(?<=@ARTICLE\\{)[^,]+")
 }
+
+icon_from_file <- function(x){
+  dplyr::case_when(
+    grepl("html$|docs.google.com/presentation", x) ~ "{{< fa globe >}}",
+    is.na(x) ~ NA,
+    xfun::file_ext(x) == "pdf" ~ "{{< fa file-pdf >}}",
+    TRUE ~ "{{< fa globe >}}"
+  )
+}
