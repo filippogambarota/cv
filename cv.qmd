@@ -690,9 +690,7 @@ Ad-hoc reviewer for:
 cat(sprintf("- %s", cv$reviews$journal), sep = "\n")
 ```
 
-{{< pagebreak >}}
-
-## Professional Memberships
+## Academic memberships
 
 ```{r}
 #| results: asis
@@ -700,8 +698,6 @@ cat(sprintf("- %s", cv$reviews$journal), sep = "\n")
 cv$memberships |> 
   format_all(format_memb)
 ```
-
-{{< pagebreak >}}
 
 ## Organization
 
