@@ -266,20 +266,6 @@ for(i in 1:nrow(education)){
 }
 ```
 
-{{< pagebreak >}}
-
-## Awards
-
-```{r}
-#| results: asis
-#| echo: false
-cv$awards |> 
-  arrange(desc(date)) |> 
-  format_all(format_awards)
-```
-
-{{< pagebreak >}}
-
 ## Training
 
 ```{r}
@@ -296,6 +282,18 @@ for(i in 1:nrow(training)){
              training$details[i])
   cat("\n\n")
 }
+```
+
+{{< pagebreak >}}
+
+## Awards
+
+```{r}
+#| results: asis
+#| echo: false
+cv$awards |> 
+  arrange(desc(date)) |> 
+  format_all(format_awards)
 ```
 
 {{< pagebreak >}}
@@ -447,9 +445,9 @@ naccepted <- nrow(cv$accepted_publications)
 nunderreview <- nrow(cv$under_review)
 ```
 
-#### Google Scholar <sup>+</sup>
+#### Google Scholar
 
-[*Last Update: `r Sys.Date()`* </br> <sup>+</sup> *contains preprints, conference proceedings and redundant articles*]{.details}
+[*Last Update: `r Sys.Date()`* </br> *contains preprints, conference proceedings and redundant articles*]{.details}
 
 - H-index: **`r fg_scholar$h_index`**
 - Citations: **`r fg_scholar$total_cites`**
@@ -514,6 +512,16 @@ qgraph(adj, labels = labs,color = "#eeeeee",  vsize = 5, diag = FALSE, shape=sha
 ### Published (`r length(bib)`)
 
 ```{r}
+keys <- names(sort(bib))
+first_author <- sum(grepl("Gambarota", keys))
+metr <- cv$publication_metrics[match(keys, cv$publication_metrics$key), ]
+```
+
+[<sup><b>c</b></sup> means that I am the corresponding author]{.details}
+
+Among the `r length(bib)` publications, I have **`r first_author`** first-author papers and **`r sum(metr$Corresponding)`** papers with the role of corresponding author.
+
+```{r}
 #| results: asis
 #| echo: false
 #| eval: false
@@ -554,9 +562,9 @@ for(i in 1:length(bib_list)){
 
 ```{r}
 #| results: asis
-keys <- names(sort(bib))
-metr <- cv$publication_metrics[match(keys, cv$publication_metrics$key), ]
-citations <- sprintf("1. @%s </br> *[IF: %s, Quartile: %s]*",
+
+citations <- sprintf("1. %s @%s </br> *[IF: %s, Quartile: %s]*",
+        ifelse(metr$Corresponding == 1, "<sup><b>c</b></sup>", ""),
         metr$key,
         metr$IF,
         metr$Quartile)
@@ -564,10 +572,9 @@ citations <- sprintf("1. @%s </br> *[IF: %s, Quartile: %s]*",
 cat(citations, sep = "\n\n")
 ```
 
-
 ```{r include=naccepted > 0}
 #| results: asis
-header <- sprintf("Accepted (%s)", naccepted)
+header <- sprintf("Accepted/in press (%s)", naccepted)
 pander::pandoc.header(header, 3)
 ```
 
@@ -716,9 +723,12 @@ for(i in 1:nrow(other)){
 
 ## Third Mission (Terza Missione)
 
+[*Section written in Italian*]{.details}
+
 ```{r}
 #| results: asis
 #| echo: false
+#| include: true
 
 terza_missione <- cv$terza_missione |> 
   mutate(date = gsub("\\.0", "", date)) |> 
@@ -773,7 +783,7 @@ for(i in 1:nrow(coll)){
 }
 ```
 
-## Group research activities
+## Involvement in research groups
 
 [2023 - ongoing]{.cvdate}[Research group on Multiverse analysis in generalized linear models and meta-analysis]{.what}
 
@@ -790,7 +800,7 @@ Member of a national research group about inference in multiverse for GLM and me
 
 [2023 - ongoing]{.cvdate}[Research group working on tutorials about statistical methods in Psychology]{.what}
 
-Member of a research group with the aim of writing tutorial for common and widely used statistical methods in Psychology. Main group members are Gianmarco Altoè (University of Padova), Enrico Toffalini (University of Padova) and other members from the Psicostat research group. We produced the following papers:
+Member of a national research group with the aim of writing tutorial for common and widely used statistical methods in Psychology. Main group members are Gianmarco Altoè (University of Padova), Enrico Toffalini (University of Padova) and other members from the Psicostat research group. We produced the following papers:
 
 :::{.smaller}
 
@@ -870,14 +880,25 @@ Rated as `r pb_skill(1)` (basic knowledge) to `r pb_skill(5)` (advanced knowledg
 </br>
 </br>
 
+{{< pagebreak >}}
+
 :::{.print-only}
 
-[`r today("html")`]{.signaturedate}
+[ITA] Autorizzo il trattamento dei dati personali presenti nel CV ai sensi del D.Lgs. 2018/101 e del GDPR (Regolamento UE 2016/679).
+
+Il sottoscritto Filippo Gambarota, consapevole delle responsabilità anche penali nel caso di falsità in atti e dichiarazioni mendaci ai sensi dell’art.76 del DPR 445/2000, dichiara che i dati, le informazioni e le notizie riportate nel presente Curriculum Vitae corrispondono al vero.
+
+[ENG] I authorize the processing of personal data included in my CV in accordance with Legislative Decree 2018/101 and the GDPR (Regulation EU 2016/679).
+
+I hereby declare that the information and details provided in this Curriculum Vitae are true and accurate to the best of my knowledge, acknowledging the legal and criminal consequences of providing false statements as per Article 76 of Presidential Decree 445/2000.
 
 </br>
 
-![](files/signature.png){.signature}
-:::
+[Padua, `r today("html")`]{.signaturedate}
 
-::: {#refs}
+</br>
+
+[Filippo Gambarota]{.signaturename}
+</br>
+![](files/signature.png){.signature}
 :::

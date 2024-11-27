@@ -15,8 +15,12 @@
 }
 
 .signaturedate{
-  float: right;
+  float: left;
   font-style: italic;
+}
+
+.signaturename{
+  float: right;
 }
 
 .details ul {
