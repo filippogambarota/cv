@@ -17,7 +17,8 @@ today <- function(to = "plain"){
   if(to == "html"){
     suffix <- sprintf("<sup>%s</sup>", suffix)
   }
-  sprintf("%s %s%s %s", format(date, "%B"), format(date, "%d"), suffix, format(date, "%Y") )
+  mon <- as.character(lubridate::month(date, label = TRUE, abbr = FALSE))
+  sprintf("%s %s%s %s", mon, format(date, "%d"), suffix, format(date, "%Y") )
 }
 
 
