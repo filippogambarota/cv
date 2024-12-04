@@ -892,7 +892,7 @@ I hereby declare that the information and details provided in this Curriculum Vi
 
 </br>
 
-[Padua, `r today("html")`]{.signaturedate}
+[Padova, `r today("html")`]{.signaturedate}
 
 </br>
 

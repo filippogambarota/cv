@@ -17,7 +17,7 @@ today <- function(to = "plain"){
   if(to == "html"){
     suffix <- sprintf("<sup>%s</sup>", suffix)
   }
-  paste0(format(date, "%d"), suffix, " ", format(date, "%B %Y"))
+  sprintf("%s %s%s %s", format(date, "%B"), format(date, "%d"), suffix, format(date, "%Y") )
 }
 
 
