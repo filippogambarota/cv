@@ -98,7 +98,7 @@ add_css_class <- function(x, class){
 }
 
 render_cv <- function(){
-  options(googledrive_quiet = TRUE)
+  options(googledrive_quiet = TRUE, pagedown.remote.maxattempts=40, pagedown.remote.sleeptime=2) # number of attempt in total
   quarto::quarto_render("cv.qmd",
                         output_format = "html",
                         output_file = "index.html",

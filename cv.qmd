@@ -42,6 +42,8 @@ library(googledrive)
 library(here)
 library(scholar)
 library(kableExtra)
+library(ggraph)
+library(igraph)
 devtools::load_all()
 
 drive_auth("filippo.gambarota@gmail.com")
@@ -85,73 +87,95 @@ names(conf_apa) <- clean_for_name(nn)
 
 # thanks to https://eiko-fried.com/create-your-collaborator-network-in-r/
 
-library("qgraph")
-library("dplyr")
-
-# pp <- PrintBibliography(bib, 
-#                   .opts = list(bib.style = "authoryear", 
-#                                sorting = "ydnt", 
-#                                max.names = 100)) |> 
-#   capture.output()
+# library("qgraph")
+# library("dplyr")
 # 
-# end <- c(grep("^\\s*$", pp))
-# start <- c(1, end + 1)
-# end <- c(end, length(pp))
+# # pp <- PrintBibliography(bib, 
+# #                   .opts = list(bib.style = "authoryear", 
+# #                                sorting = "ydnt", 
+# #                                max.names = 100)) |> 
+# #   capture.output()
+# # 
+# # end <- c(grep("^\\s*$", pp))
+# # start <- c(1, end + 1)
+# # end <- c(end, length(pp))
+# # 
+# # pp <- mapply(function(s, e) pp[s:e], start, end)
+# # pp <- lapply(pp, function(x) paste(x, collapse = ""))
+# # pp <- unlist(pp)
+# # writeLines(pp, "files/mypubs.txt")
 # 
-# pp <- mapply(function(s, e) pp[s:e], start, end)
-# pp <- lapply(pp, function(x) paste(x, collapse = ""))
-# pp <- unlist(pp)
-# writeLines(pp, "files/mypubs.txt")
+# # Load references:  
+# refs <- readLines("files/mypubs.txt")
+# 
+# authors <- refs %>% 
+#   # First remove everything from date onwards:
+#   gsub("\\(.*","",.) %>% 
+#   # Remove asterix:
+#   gsub("\\*","",.) %>%
+#   # Make lowercase:
+#   tolower %>%
+#   # Remove spaces:
+#   gsub("\\s*","",.) %>%
+#   # Remove &
+#   gsub("\\&","",.) %>%
+#   # Split on .,:
+#   strsplit(split="(?<=\\.),",perl=TRUE) %>%
+#   # Remove periods and everything following:
+#   lapply(function(x)gsub("\\..*","",x))
+# 
+# # Collect unique authors:
+# allAuthors <- unique(unlist(authors))
+# 
+# # Create list 
+# SymXDis <- do.call(cbind,lapply(authors,function(x){
+#   1*(allAuthors %in% x)
+# }))
+# 
+# # Make adjacency:
+# adj <- SymXDis %*% t(SymXDis)
+# 
+# # Labels:
+# labs <- gsub(",.*","",allAuthors)
+# substr(labs,0,1) <- toupper(substr(labs,0,1))
+# 
+# # Plot:
+# sha <- ifelse(allAuthors == "gambarota,f","square", "circle")
+# names<-c(1:71)
+# 
+# # pdf("1network_full_numbers.pdf", width=6, height=4.5)
+# # qgraph(adj, labels = names, nodeNames = labs, color = "#eeeeee",  shape=sha, vsize = 4, diag = FALSE,
+# #        layout = "spring", edge.color = "#666666", repulsion = 0.90, 
+# #        border.width=2, border.color='#444444', label.color="#555555", legend.cex=.15)
+# # dev.off()
+# 
+# #pdf("2network_full_names.pdf")
+# # qgraph(adj, labels = labs,color = "#eeeeee",  vsize = 5, diag = FALSE, shape=sha,
+# #        layout = "spring", edge.color = "#666666", repulsion = 0.90, 
+# #        border.width=2, border.color='#444444', label.color="#555555")
+# #dev.off()
 
-# Load references:  
-refs <- readLines("files/mypubs.txt")
+papers <- sapply(bib, function(entry) sapply(entry$author, function(aut) aut$family))
 
-authors <- refs %>% 
-  # First remove everything from date onwards:
-  gsub("\\(.*","",.) %>% 
-  # Remove asterix:
-  gsub("\\*","",.) %>%
-  # Make lowercase:
-  tolower %>%
-  # Remove spaces:
-  gsub("\\s*","",.) %>%
-  # Remove &
-  gsub("\\&","",.) %>%
-  # Split on .,:
-  strsplit(split="(?<=\\.),",perl=TRUE) %>%
-  # Remove periods and everything following:
-  lapply(function(x)gsub("\\..*","",x))
+# flatten for authors with composite surnames
 
-# Collect unique authors:
-allAuthors <- unique(unlist(authors))
+for(i in 1:length(papers)){
+  if(is.list(papers[[i]])){
+    papers[[i]] <- sapply(papers[[i]], function(x) paste(x, collapse = " "))
+  }
+}
 
-# Create list 
-SymXDis <- do.call(cbind,lapply(authors,function(x){
-  1*(allAuthors %in% x)
-}))
+papers <- sapply(papers, function(x) gsub("é", "è", x))
+authors <- unique(unlist(papers))
 
-# Make adjacency:
-adj <- SymXDis %*% t(SymXDis)
+in_paper <- lapply(papers, function(paper) authors %in% paper)
+in_paper <- do.call(cbind, in_paper)
 
-# Labels:
-labs <- gsub(",.*","",allAuthors)
-substr(labs,0,1) <- toupper(substr(labs,0,1))
+PUBS <- in_paper %*% t(in_paper)
 
-# Plot:
-sha <- ifelse(allAuthors == "gambarota,f","square", "circle")
-names<-c(1:71)
+graph <- graph_from_adjacency_matrix(PUBS, mode = "undirected", diag = FALSE)
 
-# pdf("1network_full_numbers.pdf", width=6, height=4.5)
-# qgraph(adj, labels = names, nodeNames = labs, color = "#eeeeee",  shape=sha, vsize = 4, diag = FALSE,
-#        layout = "spring", edge.color = "#666666", repulsion = 0.90, 
-#        border.width=2, border.color='#444444', label.color="#555555", legend.cex=.15)
-# dev.off()
-
-#pdf("2network_full_names.pdf")
-# qgraph(adj, labels = labs,color = "#eeeeee",  vsize = 5, diag = FALSE, shape=sha,
-#        layout = "spring", edge.color = "#666666", repulsion = 0.90, 
-#        border.width=2, border.color='#444444', label.color="#555555")
-#dev.off()
+V(graph)$degree <- degree(graph)
 ```
 
 
@@ -502,9 +526,23 @@ scholar_data |>
 #| fig-width: 10
 #| fig-height: 10
 #| fig-dpi: 300
+#| include: false
 qgraph(adj, labels = labs,color = "#eeeeee",  vsize = 5, diag = FALSE, shape=sha,
        layout = "spring", edge.color = "#666666", repulsion = 0.90, 
        border.width=2, border.color='#444444', label.color="#555555")
+```
+
+```{r}
+#| fig-width: 10
+#| fig-height: 10
+#| dev: svg
+ggraph(graph, layout = "fr") +  
+  geom_edge_link(alpha = 0.5, color = "gray") +  
+  geom_node_point(aes(size = degree), color = "steelblue") +  # Size mapped to degree
+  geom_node_text(aes(label = authors), vjust = 3) +  
+  scale_size(range = c(3, 10)) +  # Adjust node size range
+  theme_void() +
+  theme(legend.position = "none")
 ```
 
 :::
