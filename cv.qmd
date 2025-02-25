@@ -938,7 +938,7 @@ I hereby declare that the information and details provided in this Curriculum Vi
 
 </br>
 
-[Padova, `r today("html")`]{.signaturedate}
+[{{< meta date >}}]{.signaturedate}
 
 </br>
 
