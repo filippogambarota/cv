@@ -30,6 +30,7 @@ format:
 knitr:
   opts_chunk:
     echo: false
+title: Filippo Gambarota
 ---
 
 ```{r}
@@ -257,6 +258,8 @@ abroad$title <- sprintf("%s (%s)", abroad$title, abroad$duration)
 abroad$details <- put_before(abroad$details, "Supervisor", "</br>")
 abroad$details <- bold_pattern(abroad$details, "Supervisor")
 
+abroad$place <- sprintf("%s %s", abroad$place, flag(abroad$flag))
+
 for(i in 1:nrow(abroad)){
   make_entry(abroad$title[i],
            abroad$date[i],
@@ -468,7 +471,7 @@ I published **`r length(bib)` papers** on journals with an **average impact fact
 ```{r}
 npreprint <- nrow(cv$preprint)
 naccepted <- nrow(cv$accepted_publications)
-nunderreview <- nrow(cv$under_review)
+nunderreview <- FALSE
 ```
 
 #### Google Scholar
@@ -633,13 +636,13 @@ for(i in 1:nrow(cv$accepted_publications)){
 }
 ```
 
-```{r include=nunderreview > 0}
+```{r include=!is.null(nunderreview > 0) & nunderreview > 0}
 #| results: asis
 header <- sprintf("Under Review (%s)", nunderreview)
 pander::pandoc.header(header, 3)
 ```
 
-```{r include=nunderreview > 0, eval=nunderreview > 0}
+```{r include=!is.null(nunderreview > 0) & nunderreview > 0, eval=!is.null(nunderreview > 0) & nunderreview > 0}
 #| results: asis
 for(i in 1:nrow(cv$under_review)){
   preprint <- sprintf(
@@ -871,7 +874,12 @@ I mainly use R and the majority of research works are bounded with an R package,
 
 ### R Packages on CRAN
 
-- [trackdown](https://github.com/ClaudioZandonella/trackdown): I have co-authored an R package to collaborate on R Markdown and QUARTO documents. [[CRAN]](https://cran.r-project.org/web/packages/trackdown/index.html)
+- [trackdown](https://github.com/ClaudioZandonella/trackdown): I have co-authored an R package to collaborate on R Markdown and Quarto documents. [[CRAN]](https://cran.r-project.org/web/packages/trackdown/index.html)
+
+## Languages
+
+- **Italian** `r flag("it")`: *mother tongue*
+- **English** `r flag("gb")`/`r flag("us")`: *proficient*
 
 ## Research Skills
 

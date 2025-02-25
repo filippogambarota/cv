@@ -259,9 +259,19 @@ make_entry <- function(what = NA, date = NA, place = NA, details = NA, bullets =
   }
 }
 
-pb_skill <- function(x, max = 5){
+pb_skill_old <- function(x, max = 5){
   skill <- paste0(rep("🔵", x), collapse = "")
   noskill <- paste0(rep("⚪", max - x), collapse = "")
   out <- paste0(skill, noskill, collapse = "")
   add_css_class(out, ".pbskill")
+}
+
+pb_skill <- function(x, max = 5){
+  step <- 100/max
+  pat <- '<span class="progress-bar"><span class="progress" style="width: %s%%;"></span></span>'
+  sprintf(pat, step * x)
+}
+
+flag <- function(x){
+  sprintf('<span class="fi fi-%s"></span>', x)
 }

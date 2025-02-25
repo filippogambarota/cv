@@ -119,6 +119,24 @@ h2, .h2 {
     padding-bottom: .5rem;
 }
 
+.progress-bar {
+    display: inline-block;
+    width: 1.5cm;  /* Fixed width */
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-left: 10px;
+    position: relative;
+}
+
+.progress {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    transition: width 0.6s ease-in-out;
+}
+
 /* adapt stylesheet for print
 from: https://github.com/quarto-dev/quarto-cli/discussions/2538#discussioncomment-4081842 */
 
