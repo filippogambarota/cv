@@ -167,6 +167,14 @@ icon_from_file <- function(x){
     grepl("html$|docs.google.com/presentation", x) ~ "{{< fa globe >}}",
     is.na(x) ~ NA,
     xfun::file_ext(x) == "pdf" ~ "{{< fa file-pdf >}}",
+    #grepl("github\\.com", x) & xfun::file_ext(x) == "" ~ "{{< fa github >}}",
+    grepl("osf\\.io", x) ~ "{{< ai osf >}}",
     TRUE ~ "{{< fa globe >}}"
   )
+}
+
+link_with_icon <- function(x){
+  ifelse(!is.na(icon_from_file(x)),
+         sprintf("[%s](%s)", icon_from_file(x), x),
+         "")
 }

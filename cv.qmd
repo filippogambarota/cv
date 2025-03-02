@@ -45,6 +45,7 @@ library(scholar)
 library(kableExtra)
 library(ggraph)
 library(igraph)
+library(rscopus)
 devtools::load_all()
 
 drive_auth("filippo.gambarota@gmail.com")
@@ -457,7 +458,7 @@ supervision |>
 [Journal impact factors and quartiles are taken from **Journal Citation Reports** considering the last available data]{.details}
 
 ```{r}
-quartile <- table(cv$publication_metrics$Quartile)
+quartile <- table(cv$publications$Quartile)
 quartile <- sprintf("**%s %s in %s journals (%s%%)**", 
                     quartile, 
                     ifelse(quartile > 1, "papers", "paper"),
@@ -466,7 +467,7 @@ quartile <- sprintf("**%s %s in %s journals (%s%%)**",
 quartile <- paste0(quartile, collapse = ", ")
 ```
 
-I published **`r length(bib)` papers** on journals with an **average impact factor of `r round(mean(cv$publication_metrics$IF), 1)`**. In terms of quartiles, I published `r quartile`.
+I published **`r length(bib)` papers** on journals with an **average impact factor of `r round(mean(cv$publications$IF), 1)`**. In terms of quartiles, I published `r quartile`.
 
 ```{r}
 npreprint <- nrow(cv$preprint)
@@ -557,7 +558,7 @@ ggraph(graph, layout = "fr") +
 ```{r}
 keys <- names(sort(bib))
 first_author <- sum(grepl("Gambarota", keys))
-metr <- cv$publication_metrics[match(keys, cv$publication_metrics$key), ]
+metr <- cv$publications[match(keys, cv$publications$key), ]
 ```
 
 [<sup><b>c</b></sup> means that I am the corresponding author]{.details}
@@ -593,7 +594,7 @@ bib_keys <- names(sort(bib))
 names(bib_list) <- clean_for_name(bib_keys)
 
 for(i in 1:length(bib_list)){
-  metr <- filter(cv$publication_metrics, key == bib_keys[i])
+  metr <- filter(cv$publications, key == bib_keys[i])
   cat("1. ", bib_list[[i]], "\n")
   cat(sprintf("[IF: %s, Quartile: %s]", metr$IF[1], metr$Quartile[1]))
   cat("\n\n")
@@ -606,11 +607,13 @@ for(i in 1:length(bib_list)){
 ```{r}
 #| results: asis
 
-citations <- sprintf("1. %s @%s </br> *[IF: %s, Quartile: %s]*",
+citations <- sprintf("1. %s @%s </br> *[IF: %s, Quartile: %s]* %s %s",
         ifelse(metr$Corresponding == 1, "<sup><b>c</b></sup>", ""),
         metr$key,
         metr$IF,
-        metr$Quartile)
+        metr$Quartile,
+        link_with_icon(metr$osf),
+        link_with_icon(metr$materials))
 
 cat(citations, sep = "\n\n")
 ```
