@@ -58,6 +58,12 @@ fg_scholar_id <- "f836QNAAAAAJ"
 fg_scholar <- get_profile(fg_scholar_id)
 scholar_data <- get_citation_history(fg_scholar_id)
 fg_scholar_pubs <- scholar::get_publications(fg_scholar_id)
+scopus <- rscopus::author_df(au_id = "57211586127")
+scopus_citations <- as.numeric(scopus$`citedby-count`)
+fg_scopus <- list(
+  total_citations = sum(scopus_citations),
+  h_index = h_index(scopus_citations)
+)
 ```
 
 ```{r}
@@ -483,8 +489,18 @@ nunderreview <- FALSE
 - Citations: **`r fg_scholar$total_cites`**
 - Number of articles: **`r nrow(fg_scholar_pubs)`** 
 
+#### Scopus
+
+[*Last Update: `r Sys.Date()`*]{.details}
+
+- H-index: **`r fg_scopus$h_index`**
+- Citations: **`r fg_scopus$total_citations`**
+- Number of articles: **`r length(scopus_citations)`** 
+
 ```{r}
 #| results: asis
+
+cv$metrics <- cv$metrics[cv$metrics$service != "Scopus", ]
 date <- sprintf("[*Last Update: %s*]{.details}", cv$metrics$updated)
 h <- sprintf("- H-index: **%s**", cv$metrics$h)
 cit <- sprintf("- Citations: **%s**", cv$metrics$citations)

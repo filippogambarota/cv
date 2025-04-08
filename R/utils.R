@@ -178,3 +178,8 @@ link_with_icon <- function(x){
          sprintf("[%s](%s)", icon_from_file(x), x),
          "")
 }
+
+h_index <- function(x) {
+  sorted <- sort(x, decreasing = TRUE)
+  sum(sorted >= seq_along(sorted))
+}
