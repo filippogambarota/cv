@@ -2,4 +2,4 @@
 
 cd "$HOME/work/filippogambarota/cv"
 git pull
-Rscript -e "devtools::load_all();render_cv()"
+Rscript -e "renv::activate();devtools::load_all();render_cv()"
