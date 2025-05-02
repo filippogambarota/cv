@@ -169,6 +169,7 @@ icon_from_file <- function(x){
     xfun::file_ext(x) == "pdf" ~ "{{< fa file-pdf >}}",
     #grepl("github\\.com", x) & xfun::file_ext(x) == "" ~ "{{< fa github >}}",
     grepl("osf\\.io", x) ~ "{{< ai osf >}}",
+    grepl("\\.mp4", x) ~ "{{< fa video >}}",
     TRUE ~ "{{< fa globe >}}"
   )
 }

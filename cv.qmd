@@ -800,6 +800,15 @@ for(i in 1:nrow(terza_missione)){
   }else{
     details <- terza_missione$details[i]
   }
+  
+  if(!is.na(terza_missione$materials[i])){
+    details <- paste(details, link_with_icon(terza_missione$materials[i]))
+  }
+  
+  if(!is.na(terza_missione$video[i])){
+    details <- paste(details, sprintf("[%s](%s)", icon_from_file(".mp4"), terza_missione$video[i]))
+  }
+  
   make_entry(terza_missione$title[i], 
              terza_missione$date[i],
              terza_missione$place[i],
@@ -819,6 +828,25 @@ I am part of the [core team](https://psicostat.dpss.psy.unipd.it/people.html) of
 [2019 - ongoing]{.cvdate} [Colab [colab.psy.unipd.it](http://colab.psy.unipd.it/)]{.what}
 
 The CoLab, established at the Department of Developmental Psychology of the University of Padova in the 2000, hosts a variety of research projects, which focus primarily on exploring the functional and neural mechanisms subserving attention and language abilities in human adults.
+
+## Media Coverage
+
+```{r}
+#| results: asis
+#| echo: false
+#| include: true
+media <- cv$media |> 
+  arrange(desc(date))
+
+for(i in 1:nrow(media)){
+  make_entry(media$what[i],
+             lubridate::year(media$date[i]),
+             "",
+             paste(media$description[i], link_with_icon(media$link[i])))
+  cat("\n\n")
+}
+```
+
 
 ## Collaborations
 
