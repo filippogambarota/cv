@@ -58,11 +58,24 @@ fg_scholar_id <- "f836QNAAAAAJ"
 fg_scholar <- get_profile(fg_scholar_id)
 scholar_data <- get_citation_history(fg_scholar_id)
 fg_scholar_pubs <- scholar::get_publications(fg_scholar_id)
-scopus <- rscopus::author_df(au_id = "57211586127")
-scopus_citations <- as.numeric(scopus$`citedby-count`)
-fg_scopus <- list(
-  total_citations = sum(scopus_citations),
-  h_index = h_index(scopus_citations)
+
+fg_scopus <- tryCatch(
+        #this is the chunk of code we want to run
+        {
+          scopus <- rscopus::author_df(au_id = "57211586127", verbose = FALSE)
+          scopus_citations <- as.numeric(scopus$`citedby-count`)
+          fg_scopus <- list(
+            total_citations = sum(scopus_citations),
+            h_index = h_index(scopus_citations),
+            n_articles = length(scopus_citations),
+            date = Sys.Date()
+            )
+          to_db(fg_scopus, "fg_scopus")
+          return(fg_scopus)
+        }, error = function(e){
+          fg_scopus <- from_db("fg_scopus")
+          return(fg_scopus)
+        }
 )
 ```
 
@@ -491,11 +504,11 @@ nunderreview <- FALSE
 
 #### Scopus
 
-[*Last Update: `r Sys.Date()`*]{.details}
+[*Last Update: `r fg_scopus$date`*]{.details}
 
 - H-index: **`r fg_scopus$h_index`**
 - Citations: **`r fg_scopus$total_citations`**
-- Number of articles: **`r length(scopus_citations)`** 
+- Number of articles: **`r fg_scopus$n_articles`** 
 
 ```{r}
 #| results: asis
@@ -838,10 +851,13 @@ The CoLab, established at the Department of Developmental Psychology of the Univ
 media <- cv$media |> 
   arrange(desc(date))
 
+link <- sub("^(https?://[^/]+).*", "\\1", media$link)
+link <- gsub("^https://", "", link)
+
 for(i in 1:nrow(media)){
   make_entry(media$what[i],
              lubridate::year(media$date[i]),
-             "",
+             link[i],
              paste(media$description[i], link_with_icon(media$link[i])))
   cat("\n\n")
 }

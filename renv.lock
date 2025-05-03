@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.5.0",
+    "Version": "4.4.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -182,7 +182,8 @@
       "BugReports": "https://github.com/HenrikBengtsson/R.cache/issues",
       "RoxygenNote": "7.2.1",
       "NeedsCompilation": "no",
-      "Repository": "CRAN"
+      "Repository": "RSPM",
+      "Encoding": "UTF-8"
     },
     "R.methodsS3": {
       "Package": "R.methodsS3",
@@ -411,7 +412,8 @@
       "NeedsCompilation": "yes",
       "Author": "Doug Bates [aut] (<https://orcid.org/0000-0001-8316-9503>), Dirk Eddelbuettel [aut, cre] (<https://orcid.org/0000-0001-6419-907X>), Romain Francois [aut] (<https://orcid.org/0000-0002-2444-4226>), Yixuan Qiu [aut] (<https://orcid.org/0000-0003-0109-6692>), Authors of Eigen [cph] (Authorship and copyright in included Eigen library as detailed in inst/COPYRIGHTS)",
       "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
-      "Repository": "CRAN"
+      "Repository": "https://packagemanager.posit.co/cran/latest",
+      "Encoding": "UTF-8"
     },
     "RefManageR": {
       "Package": "RefManageR",
@@ -449,7 +451,7 @@
       "RoxygenNote": "7.2.1",
       "NeedsCompilation": "no",
       "Author": "Mathew W. McLean [aut, cre] (<https://orcid.org/0000-0002-7891-9645>)",
-      "Repository": "CRAN"
+      "Repository": "https://packagemanager.posit.co/cran/latest"
     },
     "askpass": {
       "Package": "askpass",
@@ -544,7 +546,7 @@
       "NeedsCompilation": "no",
       "Author": "Romain Francois [aut, cph] (<https://orcid.org/0000-0002-2444-4226>, principal developer of bibtex R package), James Joseph Balamuta [ctb, cre] (<https://orcid.org/0000-0003-2826-8458>), Diego Hernangómez [aut] (<https://orcid.org/0000-0001-8457-4658>), Scott Chamberlain [ctb] (<https://orcid.org/0000-0003-1444-9135>), Kurt Hornik [ctb] (<https://orcid.org/0000-0003-4198-9911>), Brian Ripley [ctb] (compilation fixes), Michael Koohafkan [ctb], Mathew W. McLean [ctb] (<https://orcid.org/0000-0002-7891-9645>)",
       "Maintainer": "James Joseph Balamuta <balamut2@illinois.edu>",
-      "Repository": "CRAN"
+      "Repository": "https://packagemanager.posit.co/cran/latest"
     },
     "bit": {
       "Package": "bit",
@@ -1957,6 +1959,7 @@
       "Description": "All personal functions or adaptation from other packages useful for my daily work",
       "License": "GPL-3",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "Depends": [
         "R (>= 3.5)"
       ],
@@ -1985,8 +1988,7 @@
       "RemoteRepo": "filor",
       "RemoteUsername": "filippogambarota",
       "RemoteRef": "HEAD",
-      "RemoteSha": "caff49f41f126b8d82a8e8bbe10dba1354110585",
-      "NeedsCompilation": "no"
+      "RemoteSha": "caff49f41f126b8d82a8e8bbe10dba1354110585"
     },
     "fontawesome": {
       "Package": "fontawesome",
@@ -2783,7 +2785,8 @@
       "NeedsCompilation": "no",
       "Author": "Baptiste Auguie [aut, cre], Anton Antonov [ctb]",
       "Maintainer": "Baptiste Auguie <baptiste.auguie@gmail.com>",
-      "Repository": "CRAN"
+      "Repository": "https://packagemanager.posit.co/cran/latest",
+      "Encoding": "UTF-8"
     },
     "gtable": {
       "Package": "gtable",
@@ -4330,7 +4333,7 @@
       "NeedsCompilation": "yes",
       "Author": "Hadley Wickham [aut, cre]",
       "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
-      "Repository": "CRAN"
+      "Repository": "https://packagemanager.posit.co/cran/latest"
     },
     "polyclip": {
       "Package": "polyclip",
@@ -4705,7 +4708,7 @@
       "NeedsCompilation": "no",
       "Author": "JJ Allaire [aut] (<https://orcid.org/0000-0003-0174-9868>), Christophe Dervieux [cre, aut] (<https://orcid.org/0000-0003-4474-2498>), Posit Software, PBC [cph, fnd]",
       "Maintainer": "Christophe Dervieux <cderv@posit.co>",
-      "Repository": "CRAN"
+      "Repository": "https://packagemanager.posit.co/cran/latest"
     },
     "ragg": {
       "Package": "ragg",

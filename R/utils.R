@@ -184,3 +184,20 @@ h_index <- function(x) {
   sorted <- sort(x, decreasing = TRUE)
   sum(sorted >= seq_along(sorted))
 }
+
+init_db <- function(){
+  makedir(".db")
+}
+
+makedir <- function(x){
+  if(!dir.exists(x)) dir.create(x)
+}
+
+to_db <- function(x, name){
+  saveRDS(x, file.path(".db", paste0(name, ".rds")))
+}
+
+from_db <- function(name){
+  ff <- paste0(name, ".rds")
+  readRDS(file.path(".db", ff))
+}
